@@ -12,11 +12,6 @@ namespace GameStore.DataAccess.EntitiesConfigurations
     {
         public static void SetGenreConfiguration(DbModelBuilder modelBuilder)
         {
-            if (modelBuilder == null)
-            {
-                return;
-            }
-
             modelBuilder.Entity<Genre>()
                 .ToTable("Genre")
                 .HasKey(x => x.Id)

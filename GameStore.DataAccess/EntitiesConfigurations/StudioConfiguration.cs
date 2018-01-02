@@ -12,11 +12,6 @@ namespace GameStore.DataAccess.EntitiesConfigurations
     {
         public static void SetStudioConfiguration(DbModelBuilder modelBuilder)
         {
-            if (modelBuilder == null)
-            {
-                return;
-            }
-
             modelBuilder.Entity<Studio>()
                 .ToTable("Studio")
                 .HasKey(x => x.Id)

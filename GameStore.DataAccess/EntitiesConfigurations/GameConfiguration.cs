@@ -13,11 +13,6 @@ namespace GameStore.DataAccess.EntitiesConfigurations
     {
         public static void SetGameConfiguration(DbModelBuilder modelBuilder)
         {
-            if (modelBuilder == null)
-            {
-                return;
-            }
-
             modelBuilder.Entity<Game>()
                 .ToTable("Game")
                 .HasKey(x => x.Id);

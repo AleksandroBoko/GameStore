@@ -12,11 +12,6 @@ namespace GameStore.DataAccess.EntitiesConfigurations
     {
         public static void SetProducerConfiguration(DbModelBuilder modelBuilder)
         {
-            if (modelBuilder == null)
-            {
-                return;
-            }
-
             modelBuilder.Entity<Producer>()
                 .ToTable("Producer")
                 .HasKey(x => x.Id);
