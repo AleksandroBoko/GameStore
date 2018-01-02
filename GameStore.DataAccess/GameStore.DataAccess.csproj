@@ -49,11 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntitiesConfigurations\GameConfiguration.cs" />
+    <Compile Include="EntitiesConfigurations\GenreConfiguration.cs" />
+    <Compile Include="EntitiesConfigurations\ProducerConfiguration.cs" />
+    <Compile Include="EntitiesConfigurations\StudioConfiguration.cs" />
     <Compile Include="EntityModels\Game.cs" />
     <Compile Include="EntityModels\GameStoreContext.cs" />
     <Compile Include="EntityModels\Genre.cs" />
     <Compile Include="EntityModels\Producer.cs" />
     <Compile Include="EntityModels\Studio.cs" />
+    <Compile Include="Migrations\201801020916399_StartIninialize.cs" />
+    <Compile Include="Migrations\201801020916399_StartIninialize.Designer.cs">
+      <DependentUpon>201801020916399_StartIninialize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +71,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801020916399_StartIninialize.resx">
+      <DependentUpon>201801020916399_StartIninialize.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameStore.DataAccess.EntitiesConfigurations;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -7,10 +8,21 @@ using System.Threading.Tasks;
 
 namespace GameStore.DataAccess.EntityModels
 {
-    public class GameStoreContext:DbContext
+    public class GameStoreContext : DbContext
     {
-        public GameStoreContext():base("GameStoreContext")
+        public GameStoreContext() : base("GameStoreContext")
         { }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        { 
+
+            GenreConfiguration.SetGenreConfiguration(modelBuilder);
+            StudioConfiguration.SetStudioConfiguration(modelBuilder);
+            ProducerConfiguration.SetProducerConfiguration(modelBuilder);
+            GameConfiguration.SetGameConfiguration(modelBuilder);
+
+            base.OnModelCreating(modelBuilder);
+        }
 
         public DbSet<Game> Games { get; set; }
         public DbSet<Studio> Studios { get; set; }
