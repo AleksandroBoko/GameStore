@@ -27,20 +27,23 @@ namespace GameStore.Services.Services.Implementation
 
         public ICollection<GenreModel> GetAll()
         {
-            var genres = genreRepository.GetAll();
-            var genreModels = new List<GenreModel>();
-            if (genres.Any())
-            {
-                genreModels = genres.Select(x => GetModel(x)).ToList();
-            }
+            Mapper.Initialize(cfg => cfg.CreateMap<Genre, GenreModel>());
+            var genres = Mapper.Map<ICollection<Genre>, ICollection<GenreModel>>(genreRepository.GetAll());
 
-            return genreModels;
+            return genres;
         }
 
         public GenreModel GetItemById(Guid id)
         {
             var genre = genreRepository.GetItemById(id);
-            return genre == null ? new GenreModel() : GetModel(genre);
+            if (genre == null)
+            {
+                return new GenreModel();
+            }
+            else
+            {
+                return GetModel(genre);
+            }
         }
 
         public void Remove(GenreModel item)

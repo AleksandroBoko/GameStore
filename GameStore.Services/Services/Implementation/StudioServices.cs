@@ -27,20 +27,23 @@ namespace GameStore.Services.Services.Implementation
 
         public ICollection<StudioModel> GetAll()
         {
-            var studios = studioRepository.GetAll();
-            var studioModels = new List<StudioModel>();
-            if (studios.Any())
-            {
-                studioModels = studios.Select(x => GetModel(x)).ToList();
-            }
+            Mapper.Initialize(cfg => cfg.CreateMap<Studio, StudioModel>());
+            var studios = Mapper.Map<ICollection<Studio>, ICollection<StudioModel>>(studioRepository.GetAll());
 
-            return studioModels;
+            return studios;
         }
 
         public StudioModel GetItemById(Guid id)
         {
             var studio = studioRepository.GetItemById(id);
-            return studio == null ? new StudioModel() : GetModel(studio);
+            if (studio == null)
+            {
+                return new StudioModel();
+            }
+            else
+            {
+                return GetModel(studio);
+            }
         }
 
         public void Remove(StudioModel item)
