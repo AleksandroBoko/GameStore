@@ -55,7 +55,7 @@ namespace GameStore.Services.Services.Implementation
         public void Update(StudioModel item)
         {
             var studio = GetEntityModel(item);
-            studioRepository.Remove(studio);
+            studioRepository.Update(studio);
         }
 
         public Studio GetEntityModel(StudioModel studio)
