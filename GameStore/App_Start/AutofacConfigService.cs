@@ -37,10 +37,19 @@ namespace GameStore.App_Start
                 .As<IRepository<Genre>>()
                 .SingleInstance();
 
+            builder.Register(x => StudioRepository.GetInstance())
+                .As<IRepository<Studio>>()
+                .SingleInstance();
+
             var genreRepository = GenreRepository.GetInstance();
             builder.RegisterType<GenreServices>()
                 .As<IService<GenreModel>>()
                 .WithParameter("repository", genreRepository)
+                .InstancePerRequest();
+
+            builder.RegisterType<StudioServices>()
+                .As<IService<StudioModel>>()
+                .WithParameter("repository", StudioRepository.GetInstance())
                 .InstancePerRequest();
 
             Container = builder.Build();
