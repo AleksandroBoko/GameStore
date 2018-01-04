@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameStore.DataAccess.Repositories
+namespace GameStore.Services.Services
 {
-    public interface IRepository<T> where T : class
+    public interface IService<T>
     {
         ICollection<T> GetAll();
         T GetItemById(Guid id);
         void Add(T item);
-        void Remove(T item);
         void Update(T item);
-        void Save();
+        void Remove(T item);
     }
 }

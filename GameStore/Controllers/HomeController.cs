@@ -1,14 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using GameStore.DataAccess.EntityModels;
+using GameStore.Domains.Domain;
+using GameStore.Services.Services;
 
 namespace GameStore.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IService<GenreModel> genreService;
+
+        public HomeController(IService<GenreModel> genreService)
+        {
+            this.genreService = genreService;
+        }
+
         // GET: Home
         public ActionResult Index()
         {

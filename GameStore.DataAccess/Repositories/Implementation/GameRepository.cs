@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.DataAccess.Repositories.Implementation
 {
-    class GameRepository : IRepository<Game>
+    public class GameRepository : IRepository<Game>
     {
         private GameRepository()
         {

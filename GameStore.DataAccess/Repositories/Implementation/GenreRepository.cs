@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.DataAccess.Repositories.Implementation
 {
-    class GenreRepository : IRepository<Genre>
+    public class GenreRepository : IRepository<Genre>
     {
         private GenreRepository()
         {

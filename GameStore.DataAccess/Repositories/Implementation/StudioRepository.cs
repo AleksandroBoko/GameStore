@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.DataAccess.Repositories.Implementation
 {
-    class StudioRepository : IRepository<Studio>
+    public class StudioRepository : IRepository<Studio>
     {
         private StudioRepository()
         {
