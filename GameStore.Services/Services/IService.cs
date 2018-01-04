@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Services
 {
-    interface IService<T>
+    public interface IService<T>
     {
         ICollection<T> GetAll();
         T GetItemById(Guid id);

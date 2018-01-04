@@ -51,6 +51,14 @@
       <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=4.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.4.1.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -185,6 +193,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutofacConfigService.cs" />
+    <Compile Include="App_Start\Bootstrapper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -196,7 +206,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -224,6 +236,14 @@
     <ProjectReference Include="..\GameStore.DataAccess\GameStore.DataAccess.csproj">
       <Project>{e6e2266c-13f6-45c3-b3ea-8cf3186800a2}</Project>
       <Name>GameStore.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameStore.Domains\GameStore.Domains.csproj">
+      <Project>{7F357CB2-4014-48E6-9DAF-01E903540395}</Project>
+      <Name>GameStore.Domains</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameStore.Services\GameStore.Services.csproj">
+      <Project>{700CBF9B-51AA-44BF-8D5B-CEF3DD3902D6}</Project>
+      <Name>GameStore.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

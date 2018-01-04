@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.DataAccess.Repositories.Implementation
 {
-    class ProducerRepository : IRepository<Producer>
+    public class ProducerRepository : IRepository<Producer>
     {
         private ProducerRepository()
         {
