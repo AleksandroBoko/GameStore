@@ -2,7 +2,7 @@
 using GameStore.DataAccess.EntityModels;
 using GameStore.DataAccess.Repositories;
 using GameStore.Domains.Domain;
-using GameStore.Services.Util;
+using static GameStore.Services.Util.AppMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +22,14 @@ namespace GameStore.Services.Services.Implementation
 
         public void Add(GenreModel item)
         {
-            var genreEntity = AppMapper.GameStoreMapper.Map<GenreModel, Genre>(item);
+            var genreEntity = GameStoreMapper.Map<GenreModel, Genre>(item);
             genreRepository.Add(genreEntity);
         }
 
         public ICollection<GenreModel> GetAll()
         {
-            var genres = AppMapper.GameStoreMapper
-                             .Map<ICollection<Genre>, ICollection<GenreModel>>(genreRepository.GetAll());
+            var genres = GameStoreMapper.Map<ICollection<Genre>, ICollection<GenreModel>>
+                (genreRepository.GetAll());
 
             return genres;
         }
@@ -43,19 +43,19 @@ namespace GameStore.Services.Services.Implementation
             }
             else
             {
-                return AppMapper.GameStoreMapper.Map<Genre, GenreModel>(genre);
+                return GameStoreMapper.Map<Genre, GenreModel>(genre);
             }
         }
 
         public void Remove(GenreModel item)
         {
-            var genre = AppMapper.GameStoreMapper.Map<GenreModel, Genre>(item);
+            var genre = GameStoreMapper.Map<GenreModel, Genre>(item);
             genreRepository.Remove(genre);
         }
 
         public void Update(GenreModel item)
         {
-            var genre = AppMapper.GameStoreMapper.Map<GenreModel, Genre>(item);
+            var genre = GameStoreMapper.Map<GenreModel, Genre>(item);
             genreRepository.Update(genre);
         }
     }

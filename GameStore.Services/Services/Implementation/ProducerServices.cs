@@ -2,7 +2,7 @@
 using GameStore.DataAccess.EntityModels;
 using GameStore.DataAccess.Repositories;
 using GameStore.Domains.Domain;
-using GameStore.Services.Util;
+using static GameStore.Services.Util.AppMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +22,14 @@ namespace GameStore.Services.Services.Implementation
 
         public void Add(ProducerModel item)
         {
-            var producerEntity = AppMapper.GameStoreMapper.Map<ProducerModel, Producer>(item);
+            var producerEntity = GameStoreMapper.Map<ProducerModel, Producer>(item);
             producerRepository.Add(producerEntity);
         }
 
         public ICollection<ProducerModel> GetAll()
         {
-            var producers = AppMapper.GameStoreMapper
-                                .Map<ICollection<Producer>, ICollection<ProducerModel>>(producerRepository.GetAll());
+            var producers = GameStoreMapper.Map<ICollection<Producer>, ICollection<ProducerModel>>
+                (producerRepository.GetAll());
 
             return producers;
         }
@@ -43,19 +43,19 @@ namespace GameStore.Services.Services.Implementation
             }
             else
             {
-                return AppMapper.GameStoreMapper.Map<Producer, ProducerModel>(producer);
+                return GameStoreMapper.Map<Producer, ProducerModel>(producer);
             }
         }
 
         public void Remove(ProducerModel item)
         {
-            var producer = AppMapper.GameStoreMapper.Map<ProducerModel, Producer>(item);
+            var producer = GameStoreMapper.Map<ProducerModel, Producer>(item);
             producerRepository.Remove(producer);
         }
 
         public void Update(ProducerModel item)
         {
-            var producer = AppMapper.GameStoreMapper.Map<ProducerModel, Producer>(item);
+            var producer = GameStoreMapper.Map<ProducerModel, Producer>(item);
             producerRepository.Update(producer);
         }
     }
