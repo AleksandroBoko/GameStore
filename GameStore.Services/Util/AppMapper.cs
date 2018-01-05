@@ -22,18 +22,10 @@ namespace GameStore.Services.Util
         {
             var configuration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Game, GameModel>()
-                    .ForMember(x => x.Producers, 
-                               x => x.MapFrom(s => 
-                                   Mapper.Map<ICollection<Producer>,ICollection<ProducerModel>>(s.Producers)));
-
-                cfg.CreateMap<GameModel, Game>()
-                    .ForMember(x => x.Producers,
-                               x => x.MapFrom(s =>
-                                   Mapper.Map<ICollection<ProducerModel>, ICollection<Producer>>(s.Producers)));
-
                 cfg.CreateMap<Producer, ProducerModel>();
                 cfg.CreateMap<ProducerModel, Producer>();
+                cfg.CreateMap<Game, GameModel>();
+                cfg.CreateMap<GameModel, Game>();
                 cfg.CreateMap<Studio, StudioModel>();
                 cfg.CreateMap<StudioModel, Studio>();
                 cfg.CreateMap<Genre, GenreModel>();
