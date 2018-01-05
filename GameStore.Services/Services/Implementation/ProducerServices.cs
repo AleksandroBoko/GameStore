@@ -2,6 +2,7 @@
 using GameStore.DataAccess.EntityModels;
 using GameStore.DataAccess.Repositories;
 using GameStore.Domains.Domain;
+using GameStore.Services.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,19 +22,14 @@ namespace GameStore.Services.Services.Implementation
 
         public void Add(ProducerModel item)
         {
-            var producerEntity = GetEntityModel(item);
+            var producerEntity = AppMapper.GameStoreMapper.Map<ProducerModel, Producer>(item);
             producerRepository.Add(producerEntity);
         }
 
         public ICollection<ProducerModel> GetAll()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Producer, ProducerModel>()
-                .ForMember(x => x.Games, 
-                           x => x.MapFrom(p => Mapper.Map<ICollection<Game>, ICollection<GameModel>>(p.Games)))
-            );
-            
-            var producers = Mapper.Map<ICollection<Producer>, ICollection<ProducerModel>>
-                            (producerRepository.GetAll());
+            var producers = AppMapper.GameStoreMapper
+                                .Map<ICollection<Producer>, ICollection<ProducerModel>>(producerRepository.GetAll());
 
             return producers;
         }
@@ -47,43 +43,20 @@ namespace GameStore.Services.Services.Implementation
             }
             else
             {
-                return GetModel(producer);
+                return AppMapper.GameStoreMapper.Map<Producer, ProducerModel>(producer);
             }
         }
 
         public void Remove(ProducerModel item)
         {
-            var producer = GetEntityModel(item);
+            var producer = AppMapper.GameStoreMapper.Map<ProducerModel, Producer>(item);
             producerRepository.Remove(producer);
         }
 
         public void Update(ProducerModel item)
         {
-            var producer = GetEntityModel(item);
+            var producer = AppMapper.GameStoreMapper.Map<ProducerModel, Producer>(item);
             producerRepository.Update(producer);
-        }
-
-        public Producer GetEntityModel(ProducerModel producer)
-        {
-            Mapper.Initialize(cfg => cfg.CreateMap<ProducerModel, Producer>()
-                .ForMember(x => x.Games,
-                           x => x.MapFrom(p => Mapper.Map<ICollection<GameModel>, ICollection<Game>>(p.Games)))
-            );
-
-            var producerEntity = Mapper.Map<ProducerModel, Producer>(producer);
-            return producerEntity;
-        }
-
-        public ProducerModel GetModel(Producer producerEntity)
-        {
-            Mapper.Initialize(cfg => cfg.CreateMap<Producer, ProducerModel>()
-                .ForMember(x => x.Games,
-                           x => x.MapFrom(p => Mapper.Map<ICollection<Game>, ICollection<GameModel>>(p.Games)))
-            );
-
-            var producer = Mapper.Map<Producer, ProducerModel>(producerEntity);
-
-            return producer;
         }
     }
 }
