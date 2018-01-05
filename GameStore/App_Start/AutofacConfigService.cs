@@ -53,7 +53,7 @@ namespace GameStore.App_Start
 
             builder.RegisterType<StudioServices>()
                 .As<IService<StudioModel>>()
-                .WithParameter("repository", ProducerRepository.GetInstance())
+                .WithParameter("repository", StudioRepository.GetInstance())
                 .InstancePerRequest();
 
             builder.RegisterType<ProducerServices>()

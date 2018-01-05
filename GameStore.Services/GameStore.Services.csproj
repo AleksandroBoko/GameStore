@@ -105,6 +105,7 @@
     <Compile Include="Services\Implementation\ProducerServices.cs" />
     <Compile Include="Services\Implementation\StudioServices.cs" />
     <Compile Include="Services\IService.cs" />
+    <Compile Include="Util\AppMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameStore.DataAccess\GameStore.DataAccess.csproj">
