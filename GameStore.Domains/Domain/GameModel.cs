@@ -13,6 +13,7 @@ namespace GameStore.Domains.Domain
         public string Description { get; set; }
         public DateTime Date { get; set; }
         public int Rate { get; set; }
+        public string Image { get; set; }
         public Guid GenreId { get; set; }
         public Guid StudioId { get; set; }
         public ICollection<ProducerModel> Producers { get; set;}
