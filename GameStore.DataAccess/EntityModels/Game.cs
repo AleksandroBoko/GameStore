@@ -20,6 +20,7 @@ namespace GameStore.DataAccess.EntityModels
         public Studio GameStudio { get; set; }
 
         public int Rate { get; set; }
+        public string Image { get; set; }
 
         public ICollection<Producer> Producers { get; set; }
     }
