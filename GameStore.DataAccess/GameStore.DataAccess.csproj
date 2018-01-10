@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201801020916399_StartIninialize.Designer.cs">
       <DependentUpon>201801020916399_StartIninialize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801090901137_AddImageFieldToGame.cs" />
+    <Compile Include="Migrations\201801090901137_AddImageFieldToGame.Designer.cs">
+      <DependentUpon>201801090901137_AddImageFieldToGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Implementation\GameRepository.cs" />
@@ -88,6 +92,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201801020916399_StartIninialize.resx">
       <DependentUpon>201801020916399_StartIninialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801090901137_AddImageFieldToGame.resx">
+      <DependentUpon>201801090901137_AddImageFieldToGame.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

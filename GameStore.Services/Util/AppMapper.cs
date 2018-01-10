@@ -30,6 +30,12 @@ namespace GameStore.Services.Util
                 cfg.CreateMap<StudioModel, Studio>();
                 cfg.CreateMap<Genre, GenreModel>();
                 cfg.CreateMap<GenreModel, Genre>();
+                cfg.CreateMap<Game, GameInfoTransferModel>()
+                    .ForMember(x => x.GenreName, s => s.MapFrom(g => g.GameGenre.Name))
+                    .ForMember(x => x.StudioName, s => s.MapFrom(g => g.GameStudio.Name))
+                    .ForMember(x => x.ProducersNames,
+                               s => s.MapFrom(g => g.Producers.Select(p => p.Name)));
+                                   
             });
 
             GameStoreMapper = configuration.CreateMapper();

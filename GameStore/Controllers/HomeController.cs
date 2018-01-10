@@ -7,12 +7,19 @@ namespace GameStore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IService<GenreModel> genreService;
-
-        public HomeController(IService<GenreModel> genreService)
+        public HomeController(IService<GenreModel> genreService, IService<StudioModel> studioService,
+            IService<ProducerModel> producerService, IService<GameModel> gameService)
         {
             this.genreService = genreService;
+            this.studioService = studioService;
+            this.producerService = producerService;
+            this.gameService = gameService;
         }
+
+        private readonly IService<GenreModel> genreService;
+        private readonly IService<StudioModel> studioService;
+        private readonly IService<ProducerModel> producerService;
+        private readonly IService<GameModel> gameService;
 
         // GET: Home
         public ActionResult Index()

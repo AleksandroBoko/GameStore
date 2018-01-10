@@ -31,6 +31,10 @@ namespace GameStore.DataAccess.EntitiesConfigurations
                 .IsRequired();
 
             modelBuilder.Entity<Game>()
+                .Property(x => x.Image)
+                .IsRequired();
+
+            modelBuilder.Entity<Game>()
                 .Property(x => x.Description)
                 .HasMaxLength(500)
                 .IsOptional();

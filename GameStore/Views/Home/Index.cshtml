@@ -1,0 +1,38 @@
+﻿<p>The Index view</p>
+<div id="tableBlock"></div>
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        getAllGames();
+
+    })
+
+    function getAllGames() {
+        $.ajax({
+            url: '/api/Main',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                writeResponse(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        })
+    }
+
+    function writeResponse(games) {
+        var strResult = "<table><th>Number</th><th>Name</th><th>Genre</th><th>Studio</th>" +
+                        "<th>Date</th><th>Rate</th><th>Description</th><th>Producers</th>";
+        $.each(games, function (index, game) {
+            strResult += "<tr><td>" + (index+1) + "</td><td>" + game.Name + "</td><td>" + game.GenreName +
+            "</td><td>" + game.StudioName + "</td><td>" + game.Date + "</td><td>" + game.Rate + "</td><td>" 
+            + game.Description + "</td><td>" + game.ProducersNames + "</td></tr> ";
+        })
+        strResult += "</table>";
+        $("#tableBlock").html(strResult);
+        
+    }
+
+</script>

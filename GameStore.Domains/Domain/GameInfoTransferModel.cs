@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Domains.Domain
 {
-    public class GameModel
+    public class GameInfoTransferModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -14,8 +14,8 @@ namespace GameStore.Domains.Domain
         public DateTime Date { get; set; }
         public int Rate { get; set; }
         public string Image { get; set; }
-        public Guid GenreId { get; set; }
-        public Guid StudioId { get; set; }
-        public ICollection<ProducerModel> Producers { get; set;}
+        public string GenreName { get; set; }
+        public string StudioName { get; set; }
+        public ICollection<string> ProducersNames { get; set; }
     }
 }
