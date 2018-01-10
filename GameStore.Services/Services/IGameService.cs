@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Services
 {
-    public interface IGameService:IService<GameModel>
+    public interface IGameService : IService<GameModel>
     {
         ICollection<GameInfoTransferModel> GetGameInfoTransferAll();
     }

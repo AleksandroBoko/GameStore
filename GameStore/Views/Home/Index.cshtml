@@ -4,17 +4,17 @@
 <script>
     $(document).ready(function () {
 
-        GetAllGames();
+        getAllGames();
 
     })
 
-    function GetAllGames() {
+    function getAllGames() {
         $.ajax({
             url: '/api/Main',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                WriteResponse(data);
+                writeResponse(data);
             },
             error: function (x, y, z) {
                 alert(x + '\n' + y + '\n' + z);
@@ -22,7 +22,7 @@
         })
     }
 
-    function WriteResponse(games) {
+    function writeResponse(games) {
         var strResult = "<table><th>Number</th><th>Name</th><th>Genre</th><th>Studio</th>" +
                         "<th>Date</th><th>Rate</th><th>Description</th><th>Producers</th>";
         $.each(games, function (index, game) {

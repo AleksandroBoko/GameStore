@@ -18,10 +18,6 @@ namespace GameStore.Controllers
 
         private readonly IGameService gameService;
 
-        public IEnumerable<GameInfoTransferModel> Get()
-        {
-            var games = gameService.GetGameInfoTransferAll();
-            return games;
-        }
+        public IEnumerable<GameInfoTransferModel> Get() => gameService.GetGameInfoTransferAll(); 
     }
 }
