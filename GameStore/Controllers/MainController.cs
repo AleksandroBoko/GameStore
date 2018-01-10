@@ -11,16 +11,16 @@ namespace GameStore.Controllers
 {
     public class MainController : ApiController
     {
-        public MainController(IService<GameModel> gameService)
+        public MainController(IGameService gameService)
         {
             this.gameService = gameService;
         }
 
-        private readonly IService<GameModel> gameService;
+        private readonly IGameService gameService;
 
-        public IEnumerable<GameModel> Get()
+        public IEnumerable<GameInfoTransferModel> Get()
         {
-            var games = gameService.GetAll();
+            var games = gameService.GetGameInfoTransferAll();
             return games;
         }
     }

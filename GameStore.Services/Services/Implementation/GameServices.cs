@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Services.Implementation
 {
-    public class GameServices:IService<GameModel>
+    public class GameServices:IGameService
     {
         public GameServices(IRepository<Game> repository)
         {
@@ -22,6 +22,14 @@ namespace GameStore.Services.Services.Implementation
         public ICollection<GameModel> GetAll()
         {
             var games = GameStoreMapper.Map<ICollection<Game>, ICollection<GameModel>>
+                (gameRepository.GetAll());
+
+            return games;
+        }
+
+        public ICollection<GameInfoTransferModel> GetGameInfoTransferAll()
+        {
+            var games = GameStoreMapper.Map<ICollection<Game>, ICollection<GameInfoTransferModel>>
                 (gameRepository.GetAll());
 
             return games;
