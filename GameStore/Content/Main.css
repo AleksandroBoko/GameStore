@@ -1,0 +1,33 @@
+﻿.tableBlock {
+    margin: 20px auto;
+}
+
+    .tableBlock table {
+        border: 1px solid #F2F2F2;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+        .tableBlock table td, th {
+            border: 1px solid #F2F2F2;
+            padding: 5px;
+        }
+
+        .tableBlock table th {
+            text-align: center;
+        }
+
+        .tableBlock table thead tr {
+            color: #FFFFFF;
+            background-color: #2E64FE;
+        }
+
+    .tableBlock div {
+        margin: 10px auto;
+        text-align: center;
+    }
+
+        .tableBlock div ul {
+            display: inline;
+            list-style-type: none;
+        }

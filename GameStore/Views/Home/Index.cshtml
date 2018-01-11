@@ -1,5 +1,5 @@
-﻿<p>The Index view</p>
-<div id="tableBlock"></div>
+﻿<div id="tableBlock" class="tableBlock"></div>
+<link href="~/Content/Main.css" rel="stylesheet"/>
 <script src="~/scripts/jquery-1.10.2.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -37,20 +37,20 @@
     }
 
     function writeResponse(games) {
-        var strResult = "<table><th>Number</th><th>Name</th><th>Genre</th><th>Studio</th>" +
-                        "<th>Date</th><th>Rate</th><th>Description</th><th>Producers</th>";
+        var strResult = "<table><thead><tr><th>Number</th><th>Name</th><th>Genre</th><th>Studio</th>" +
+                        "<th>Date</th><th>Rate</th><th>Description</th><th>Producers</th><tr></thead>";
         $.each(games, function (index, game) {
             strResult += "<tr><td>" + (index+1) + "</td><td>" + game.Name + "</td><td>" + game.GenreName +
-            "</td><td>" + game.StudioName + "</td><td>" + game.Date + "</td><td>" + game.Rate + "</td><td>" 
+            "</td><td>" + game.StudioName + "</td><td>" + (new Date(Date.parse(game.Date))).toLocaleDateString() + "</td><td>" + game.Rate + "</td><td>" 
             + game.Description + "</td><td>" + game.ProducersNames + "</td></tr> ";
         })
         strResult += "</table>";
-        strResult += "<ul><li><button onclick=" + "studiosClickHandler()" + ">Studios</button></li></ul>";
+        strResult += "<div><ul><li><button onclick=" + "studiosClickHandler()" + ">Studios</button></li></ul></div>";
         $("#tableBlock").html(strResult);        
     }
 
     function writeStudioResponse(studios) {
-        var strResult = "<table><th>Number</th><th>Name</th><th>Games</th>";
+        var strResult = "<table><thead><tr><th>Number</th><th>Name</th><th>Games</th></tr></thead>";
         $.each(studios, function (index, studio) {
             strResult += "<tr><td>" + (index + 1) + "</td><td>" + studio.Name + "</td><td>" + studio.Games + "</td></tr>";
         })
