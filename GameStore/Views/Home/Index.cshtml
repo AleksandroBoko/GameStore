@@ -41,7 +41,7 @@
                         "<th>Date</th><th>Rate</th><th>Description</th><th>Producers</th><tr></thead>";
         $.each(games, function (index, game) {
             strResult += "<tr><td>" + (index+1) + "</td><td>" + game.Name + "</td><td>" + game.GenreName +
-            "</td><td>" + game.StudioName + "</td><td>" + game.Date + "</td><td>" + game.Rate + "</td><td>" 
+            "</td><td>" + game.StudioName + "</td><td>" + (new Date(Date.parse(game.Date))).toLocaleDateString() + "</td><td>" + game.Rate + "</td><td>" 
             + game.Description + "</td><td>" + game.ProducersNames + "</td></tr> ";
         })
         strResult += "</table>";
