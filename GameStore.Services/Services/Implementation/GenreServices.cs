@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Services.Implementation
 {
-    public class GenreServices : IService<GenreModel>
+    public class GenreServices : IGenreService
     {
         public GenreServices(IRepository<Genre> repository)
         {
@@ -44,6 +44,19 @@ namespace GameStore.Services.Services.Implementation
             else
             {
                 return GameStoreMapper.Map<Genre, GenreModel>(genre);
+            }
+        }
+
+        public GenreInfoTransferModel GetGenreInfoTransferById(Guid id)
+        {
+            var genre = genreRepository.GetItemById(id);
+            if (genre == null)
+            {
+                return new GenreInfoTransferModel();
+            }
+            else
+            {
+                return GameStoreMapper.Map<Genre, GenreInfoTransferModel>(genre);
             }
         }
 

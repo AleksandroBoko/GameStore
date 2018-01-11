@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameStore.DataAccess.EntityModels
+namespace GameStore.Domains.Domain
 {
-    public class Genre
+    public class GameRateTransferModel
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
-
-        public virtual ICollection<Game> Games { get; set; }
+        public int Rate { get; set; }
     }
 }

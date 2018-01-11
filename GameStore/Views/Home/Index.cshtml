@@ -1,5 +1,5 @@
 ﻿<div id="tableBlock" class="tableBlock"></div>
-<link href="~/Content/Main.css" rel="stylesheet"/>
+<link href="~/Content/Main.css" rel="stylesheet" />
 <script src="~/scripts/jquery-1.10.2.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -36,17 +36,47 @@
         })
     }
 
+    function getAllGenres() {
+        $.ajax({
+            url: '/api/main/genres',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                writeGenreResponse(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        })
+    }
+
+    function getGenreGames(genreId) {
+        $.ajax({
+            url: '/api/main/genregames/' + genreId,
+            type: 'GET',
+            dataType: 'json',
+                
+            success: function (data) {
+                writeGenreGamesResponse(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        })
+    }
+
     function writeResponse(games) {
         var strResult = "<table><thead><tr><th>Number</th><th>Name</th><th>Genre</th><th>Studio</th>" +
                         "<th>Date</th><th>Rate</th><th>Description</th><th>Producers</th><tr></thead>";
         $.each(games, function (index, game) {
-            strResult += "<tr><td>" + (index+1) + "</td><td>" + game.Name + "</td><td>" + game.GenreName +
-            "</td><td>" + game.StudioName + "</td><td>" + (new Date(Date.parse(game.Date))).toLocaleDateString() + "</td><td>" + game.Rate + "</td><td>" 
+            strResult += "<tr><td>" + (index + 1) + "</td><td>" + game.Name + "</td><td>" + game.GenreName +
+            "</td><td>" + game.StudioName + "</td><td>" + (new Date(Date.parse(game.Date))).toLocaleDateString() + "</td><td>" + game.Rate + "</td><td>"
             + game.Description + "</td><td>" + game.ProducersNames + "</td></tr> ";
         })
         strResult += "</table>";
-        strResult += "<div><ul><li><button onclick=" + "studiosClickHandler()" + ">Studios</button></li></ul></div>";
-        $("#tableBlock").html(strResult);        
+        strResult += "<div><button onclick=" + "studiosClickHandler()" + ">Studios</button>";
+        strResult += "<button onclick=" + "genresClickHandler()" + ">Genres</button></div>";
+        $("#tableBlock").html(strResult);
     }
 
     function writeStudioResponse(studios) {
@@ -59,12 +89,46 @@
         $("#tableBlock").html(strResult);
     }
 
+    function writeGenreResponse(genres) {
+        var strResult = "<div><label for=genre>Genres of the games</label>";
+        strResult += "<select id=genre onchange=genresChangeHandler(event)>"
+        $.each(genres, function (index, genre) {
+            strResult += "<option value=" + genre.Id + ">" + genre.Name + "</option>"
+        })
+        strResult += "</select><div id=ganreGamesTable></div></div>";
+        $("#tableBlock").html(strResult);
+    }
+
+    function writeGenreGamesResponse(games) {
+        debugger
+        var strResult = "<table><thead><tr><th>Game</th><th>Rate</th></tr></thead>";
+        $.each(games, function (index, game) {
+            strResult += "<tr><td>" + game.Name + "</td><td>" + game.Rate + "</td></tr>";
+        })
+        strResult += "</table>";
+        strResult += "<div><button onclick=" + "gamesClickHandler()" + ">Back</button></div>";
+        $("#ganreGamesTable").html(strResult);        
+    }
+
     function studiosClickHandler() {
         getAllStudios();
     }
 
     function gamesClickHandler() {
         getAllGames();
+    }
+
+    function genresClickHandler() {
+        getAllGenres();
+    }
+
+    function genresChangeHandler(event) {
+        debugger
+        if (event == null)
+            return;
+        
+        var index = event.currentTarget.selectedIndex;
+        getGenreGames(event.currentTarget.options[index].value);
     }
 
 </script>

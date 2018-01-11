@@ -27,7 +27,15 @@
         text-align: center;
     }
 
-        .tableBlock div ul {
-            display: inline;
-            list-style-type: none;
+        .tableBlock div button {
+            margin: 5px;
+        }        
+
+        .tableBlock div label {            
+            font-size: 14px;
+        }
+
+        .tableBlock div select {
+            margin: 5px;
+            font-size: 14px;
         }
