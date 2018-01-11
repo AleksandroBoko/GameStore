@@ -10,11 +10,25 @@
 
     function getAllGames() {
         $.ajax({
-            url: '/api/Main',
+            url: '/api/main/games',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
                 writeResponse(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        })
+    }
+
+    function getAllStudios() {
+        $.ajax({
+            url: '/api/main/studios',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                writeStudioResponse(data);
             },
             error: function (x, y, z) {
                 alert(x + '\n' + y + '\n' + z);
@@ -31,8 +45,26 @@
             + game.Description + "</td><td>" + game.ProducersNames + "</td></tr> ";
         })
         strResult += "</table>";
+        strResult += "<ul><li><button onclick=" + "studiosClickHandler()" + ">Studios</button></li></ul>";
+        $("#tableBlock").html(strResult);        
+    }
+
+    function writeStudioResponse(studios) {
+        var strResult = "<table><th>Number</th><th>Name</th><th>Games</th>";
+        $.each(studios, function (index, studio) {
+            strResult += "<tr><td>" + (index + 1) + "</td><td>" + studio.Name + "</td><td>" + studio.Games + "</td></tr>";
+        })
+        strResult += "</table>";
+        strResult += "<div><button onclick=" + "gamesClickHandler()" + ">Back</button></div>"
         $("#tableBlock").html(strResult);
-        
+    }
+
+    function studiosClickHandler() {
+        getAllStudios();
+    }
+
+    function gamesClickHandler() {
+        getAllGames();
     }
 
 </script>

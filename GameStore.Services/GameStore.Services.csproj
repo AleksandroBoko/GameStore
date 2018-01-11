@@ -107,6 +107,7 @@
     <Compile Include="Services\Implementation\ProducerServices.cs" />
     <Compile Include="Services\Implementation\StudioServices.cs" />
     <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\IStudioService.cs" />
     <Compile Include="Util\AppMapper.cs" />
   </ItemGroup>
   <ItemGroup>
