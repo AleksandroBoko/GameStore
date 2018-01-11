@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameStore.DataAccess.EntityModels
+namespace GameStore.Domains.Domain
 {
-    public class Studio
+    public class StudioInfoTransferModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-
-        public virtual ICollection<Game> Games { get; set; }
+        public ICollection<string> Games { get; set; }
     }
 }

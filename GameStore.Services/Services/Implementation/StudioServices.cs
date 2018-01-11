@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Services.Implementation
 {
-    public class StudioServices : IService<StudioModel>
+    public class StudioServices : IStudioService
     {
         public StudioServices(IRepository<Studio> repository)
         {
@@ -28,10 +28,14 @@ namespace GameStore.Services.Services.Implementation
 
         public ICollection<StudioModel> GetAll()
         {
-            var studios = GameStoreMapper.Map<ICollection<Studio>, ICollection<StudioModel>>
-                (studioRepository.GetAll());
+            var studios = studioRepository.GetAll();
+            return GameStoreMapper.Map<ICollection<Studio>, ICollection<StudioModel>>(studios);
+        }
 
-            return studios;
+        public ICollection<StudioInfoTransferModel> GetStudioInfoTransferAll()
+        {
+            var studios = studioRepository.GetAll();
+            return GameStoreMapper.Map<ICollection<Studio>, ICollection<StudioInfoTransferModel>>(studios);
         }
 
         public StudioModel GetItemById(Guid id)

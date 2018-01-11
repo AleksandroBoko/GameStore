@@ -11,13 +11,21 @@ namespace GameStore.Controllers
 {
     public class MainController : ApiController
     {
-        public MainController(IGameService gameService)
+        public MainController(IGameService gameService, IStudioService studioService)
         {
             this.gameService = gameService;
+            this.studioService = studioService;
         }
 
         private readonly IGameService gameService;
+        private readonly IStudioService studioService;
 
-        public IEnumerable<GameInfoTransferModel> Get() => gameService.GetGameInfoTransferAll(); 
+        [Route("api/main/games")]
+        public IEnumerable<GameInfoTransferModel> GetGames() => gameService.GetGameInfoTransferAll();
+
+        [Route("api/main/studios")]
+        public IEnumerable<StudioInfoTransferModel> GetStudios() => studioService.GetStudioInfoTransferAll();
+
+        //public IEnumerable<>
     }
 }
