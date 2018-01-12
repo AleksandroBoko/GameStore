@@ -37,27 +37,13 @@ namespace GameStore.Services.Services.Implementation
         public GenreModel GetItemById(Guid id)
         {
             var genre = genreRepository.GetItemById(id);
-            if (genre == null)
-            {
-                return new GenreModel();
-            }
-            else
-            {
-                return GameStoreMapper.Map<Genre, GenreModel>(genre);
-            }
+            return genre != null ? GameStoreMapper.Map<Genre, GenreModel>(genre) : new GenreModel();
         }
 
         public GenreInfoTransferModel GetGenreInfoTransferById(Guid id)
         {
             var genre = genreRepository.GetItemById(id);
-            if (genre == null)
-            {
-                return new GenreInfoTransferModel();
-            }
-            else
-            {
-                return GameStoreMapper.Map<Genre, GenreInfoTransferModel>(genre);
-            }
+            return genre != null ? GameStoreMapper.Map<Genre, GenreInfoTransferModel>(genre) : new GenreInfoTransferModel();
         }
 
         public void Remove(GenreModel item)

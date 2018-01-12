@@ -36,14 +36,7 @@ namespace GameStore.Controllers
         public ICollection<GameRateTransferModel> GetGenreGames(Guid id)
         {
             var genre = genreService.GetGenreInfoTransferById(id);
-            if (genre != null)
-            {
-                return genre.Games;
-            }
-            else
-            {
-                return new List<GameRateTransferModel>();
-            }
+            return genre != null ? genre.Games : new List<GameRateTransferModel>();
         }
     }
 }

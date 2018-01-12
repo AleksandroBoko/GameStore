@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Services
 {
-    public interface IGenreService:IService<GenreModel>
+    public interface IGenreService : IService<GenreModel>
     {
         GenreInfoTransferModel GetGenreInfoTransferById(Guid id);
     }
