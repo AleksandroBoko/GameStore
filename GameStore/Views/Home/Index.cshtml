@@ -98,9 +98,9 @@
         strResult += "</select><div id=ganreGamesTable></div></div>";
         $("#tableBlock").html(strResult);
         
-        if (genres != null && genres.length > 0) {
+        if (genres && genres.length > 0) {
             let genre = document.getElementById("genre");
-            if (genre !== null) {
+            if (genre) {
                 let selectedId = genre.value;
                 getGenreGames(selectedId);
             }
