@@ -90,6 +90,7 @@
     }
 
     function writeGenreResponse(genres) {
+        debugger
         var strResult = "<div><label for=genre>Genres of the games</label>";
         strResult += "<select id=genre onchange=genresChangeHandler(event)>"
         $.each(genres, function (index, genre) {
@@ -97,6 +98,14 @@
         })
         strResult += "</select><div id=ganreGamesTable></div></div>";
         $("#tableBlock").html(strResult);
+        
+        if (genres != null && genres.length > 0) {
+            let genre = document.getElementById("genre");
+            if (genre !== null) {
+                let selectedId = genre.value;
+                getGenreGames(selectedId);
+            }
+        }
     }
 
     function writeGenreGamesResponse(games) {
