@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GameStore.Services.Services.Implementation
 {
-    public class ProducerServices : IService<ProducerModel>
+    public class ProducerServices : IProducerService
     {
         public ProducerServices(IRepository<Producer> repository)
         {
@@ -28,10 +28,14 @@ namespace GameStore.Services.Services.Implementation
 
         public ICollection<ProducerModel> GetAll()
         {
-            var producers = GameStoreMapper.Map<ICollection<Producer>, ICollection<ProducerModel>>
-                (producerRepository.GetAll());
+            var producers = producerRepository.GetAll();
+            return GameStoreMapper.Map<ICollection<Producer>, ICollection<ProducerModel>>(producers);
+        }
 
-            return producers;
+        public ICollection<ProducerInfoTransferModel> GetProducerInfoTransferAll()
+        {
+            var producers = producerRepository.GetAll();
+            return GameStoreMapper.Map<ICollection<Producer>, ICollection<ProducerInfoTransferModel>>(producers);
         }
 
         public ProducerModel GetItemById(Guid id)

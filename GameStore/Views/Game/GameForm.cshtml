@@ -1,0 +1,24 @@
+﻿@model GameStore.Domains.Domain.GameCreationTransferModel
+@using (Html.BeginForm("CreateGame", "Game", FormMethod.Post))
+{
+    <ul type="none">
+        <li>@Html.LabelFor(x => x.Name)</li>
+        <li>@Html.TextBoxFor(x => x.Name)</li>
+        <li>@Html.LabelFor(x => x.GenreId, "Game's genre")</li>
+        <li>@Html.DropDownListFor(x => x.GenreId, ViewBag.genres as SelectList)
+        <li>@Html.LabelFor(x => x.StudioId, "Game's studio")</li>
+        <li>@Html.DropDownListFor(x => x.StudioId, ViewBag.studios as SelectList)
+        <li>@Html.LabelFor(x => x.Date)</li>
+        <li>@Html.TextBoxFor(x => x.Date, new { type = "date" })</li>
+        <li>@Html.LabelFor(x => x.Rate)</li>
+        <li>@Html.TextBoxFor(x => x.Rate, new { type = "number" })</li>
+        <li>@Html.LabelFor(x => x.Description)</li>
+        <li>@Html.TextAreaFor(x => x.Description)</li>
+        <li>@Html.LabelFor(x => x.Producers)</li>
+        <li>@Html.ListBoxFor(x => x.Producers, ViewBag.producers as MultiSelectList)</li>
+        <li>@Html.LabelFor(x => x.Image)</li>
+        <li>@Html.TextBoxFor(x => x.Image, new { type = "file" })</li>
+        <li><hr></li>
+        <li>@Html.TextBox("createGame","Send", new { type="submit"})</li>
+    </ul>
+}
