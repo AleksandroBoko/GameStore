@@ -97,10 +97,17 @@
         })
         strResult += "</select><div id=ganreGamesTable></div></div>";
         $("#tableBlock").html(strResult);
+        
+        if (genres && genres.length > 0) {
+            let genre = document.getElementById("genre");
+            if (genre) {
+                let selectedId = genre.value;
+                getGenreGames(selectedId);
+            }
+        }
     }
 
-    function writeGenreGamesResponse(games) {
-        debugger
+    function writeGenreGamesResponse(games) {        
         var strResult = "<table><thead><tr><th>Game</th><th>Rate</th></tr></thead>";
         $.each(games, function (index, game) {
             strResult += "<tr><td>" + game.Name + "</td><td>" + game.Rate + "</td></tr>";
@@ -122,13 +129,11 @@
         getAllGenres();
     }
 
-    function genresChangeHandler(event) {
-        debugger
+    function genresChangeHandler(event) {        
         if (event == null)
             return;
         
         var index = event.currentTarget.selectedIndex;
         getGenreGames(event.currentTarget.options[index].value);
     }
-
 </script>
