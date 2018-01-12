@@ -79,6 +79,11 @@ namespace GameStore.App_Start
                 .WithParameter("repository", StudioRepository.GetInstance())
                 .InstancePerRequest();
 
+            builder.RegisterType<GenreServices>()
+                .As<IGenreService>()
+                .WithParameter("repository", GenreRepository.GetInstance())
+                .InstancePerRequest();
+
             Container = builder.Build();
 
             return Container;
