@@ -10,7 +10,7 @@ namespace GameStore.DataAccess.EntityModels
 {
     public class GameStoreContext : DbContext
     {
-        private GameStoreContext() : base("GameStoreContext")
+        public GameStoreContext() : base("GameStoreContext")
         { }
 
         private static readonly GameStoreContext Instance = new GameStoreContext();
