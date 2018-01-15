@@ -30,9 +30,12 @@ namespace GameStore.Controllers
             return View();
         }
         
-        public void CreateGame(GameCreationTransferModel game)
+        [HttpPost]
+        public void CreateGame(GameCreationTransferModel game, HttpPostedFileBase Image)
         {
-            var tempGame = game;            
+            var tempGame = game;
+            var path = $"~/Files/{System.IO.Path.GetFileName(Image.FileName)}";
+            Image.SaveAs(Server.MapPath(path));          
         }        
     }
 }
