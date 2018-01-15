@@ -1,14 +1,13 @@
-﻿function getAllGenres(genresResponse) {
+﻿function getAllStudios(studiosResponse) {
     $.ajax({
-        url: '/api/genre/genres',
+        url: '/api/studio/getstudios',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            genresResponse(data);
+            studiosResponse(data);
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);
         }
     })
 }
-

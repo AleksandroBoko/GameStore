@@ -15,7 +15,7 @@ namespace GameStore.Controllers
 
         private readonly IGenreService genreService;
 
-        [Route("genres")]
+        [Route("getgenres")]
         public IEnumerable<GenreModel> GetGenres() => genreService.GetAll();
     }
 }
