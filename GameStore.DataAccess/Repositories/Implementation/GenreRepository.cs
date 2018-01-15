@@ -12,7 +12,7 @@ namespace GameStore.DataAccess.Repositories.Implementation
     {
         private GenreRepository()
         {
-            gameContext = GameStoreContext.GetInstance();
+            gameContext = new GameStoreContext();
         }
 
         private readonly GameStoreContext gameContext;

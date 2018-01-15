@@ -11,7 +11,7 @@ namespace GameStore.DataAccess.Repositories.Implementation
     {
         private StudioRepository()
         {
-            gameContext = GameStoreContext.GetInstance();
+            gameContext = new GameStoreContext();
         }
 
         private readonly GameStoreContext gameContext;

@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\GameCreationTransferModel.cs" />
     <Compile Include="Domain\GameInfoTransferModel.cs" />
     <Compile Include="Domain\GameModel.cs" />
     <Compile Include="Domain\GameRateTransferModel.cs" />
     <Compile Include="Domain\GenreInfoTransferModel.cs" />
+    <Compile Include="Domain\ProducerInfoTransferModel.cs" />
     <Compile Include="Domain\ProducerModel.cs" />
     <Compile Include="Domain\StudioInfoTransferModel.cs" />
     <Compile Include="Domain\StudioModel.cs" />

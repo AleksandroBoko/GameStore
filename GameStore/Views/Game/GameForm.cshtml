@@ -1,0 +1,77 @@
+﻿<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script src="~/scripts/clients/genresClient.js"></script>
+<script src="~/scripts/clients/studiosClient.js"></script>
+<script>
+    $(document).ready(function () {
+        getAllGenres(writeGenresResponse);
+        getAllStudios(writeStudiosResponse);
+    })
+
+    function writeGenresResponse(genres) {
+        var strResult = "";
+        $.each(genres, function (index, genre) {
+            strResult += "<option value=" + genre.Id + ">" + genre.Name + "</option>"
+        })
+        $("#genreId").html(strResult);
+    }
+
+    function writeStudiosResponse(studios) {
+        var strResult = "";
+        $.each(studios, function (index, studio) {
+            strResult += "<option value=" + studio.Id + ">" + studio.Name + "</option>"
+        })
+        $("#studioId").html(strResult);
+    }
+
+</script>
+<div>
+    <form method="post">
+        <ul>
+            <li>
+                <label for="gameName">Name of the game:</label>
+            </li>
+            <li>
+                <input id="gameName" name="Name">
+            </li>
+            <li>
+                <label for="genreId">Genre of the game:</label>
+            </li>
+            <li>
+                <select id="genreId" name="GenreId"></select>
+            </li>
+            <li>
+                <label for="studioId">Studio of the game:</label>
+            </li>
+            <li>
+                <select id="studioId" name="StudioId"></select>
+            </li>
+            <li>
+                <label for="gameDate">Game production date:</label>
+            </li>
+            <li>
+                <input id="gameDate" name="Date" type="date" />
+            </li>
+            <li>
+                <label for="gameRate">Game's rate:</label>
+            </li>
+            <li>
+                <input id="gameRate" name="Rate" type="number" />
+            </li>
+            <li>
+                <label for="gameDescription">Description of the game</label>
+            </li>
+            <li>
+                <textarea id="gameDescription" name="Description">...Type here</textarea>
+            </li>
+            <li>
+                <label for="gameImage">Image of the game</label>
+            </li>
+            <li>
+                <input id="gameImage" name="Image" type="file" />
+            </li>
+            <li>
+                <input id="gameSubmit" name="GameSubmit" type="submit" value="Submit">
+            </li>
+        </ul>
+    </form>
+</div>
