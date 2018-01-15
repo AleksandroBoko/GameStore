@@ -34,7 +34,7 @@ namespace GameStore.Controllers
         public void CreateGame(GameCreationTransferModel game, HttpPostedFileBase Image)
         {
             var tempGame = game;
-            var path = $"~/Files/{System.IO.Path.GetFileName(Image.FileName)}";
+            var path = $"~/Content/images/{System.IO.Path.GetFileName(Image.FileName)}";
             Image.SaveAs(Server.MapPath(path));          
         }        
     }
