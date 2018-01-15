@@ -1,14 +1,11 @@
 ﻿using GameStore.Domains.Domain;
 using GameStore.Services.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace GameStore.Controllers
 {
+    [RoutePrefix("api/studio")]
     public class StudioController : ApiController
     {
         public StudioController(IStudioService studioService)
@@ -18,7 +15,7 @@ namespace GameStore.Controllers
 
         private readonly IStudioService studioService;
 
-        [Route("api/studio/studios")]
+        [Route("studios")]
         public IEnumerable<StudioModel> GetStudios() => studioService.GetAll();
     }
 }

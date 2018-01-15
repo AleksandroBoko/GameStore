@@ -1,14 +1,11 @@
 ﻿using GameStore.Domains.Domain;
 using GameStore.Services.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace GameStore.Controllers
 {
+    [RoutePrefix("api/genre")]
     public class GenreController : ApiController
     {
         public GenreController(IGenreService genreService)
@@ -18,7 +15,7 @@ namespace GameStore.Controllers
 
         private readonly IGenreService genreService;
 
-        [Route("api/genre/genres")]
+        [Route("genres")]
         public IEnumerable<GenreModel> GetGenres() => genreService.GetAll();
     }
 }
