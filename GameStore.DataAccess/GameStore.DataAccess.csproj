@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201801090901137_AddImageFieldToGame.Designer.cs">
       <DependentUpon>201801090901137_AddImageFieldToGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801160956376_ChangeKeysGameProducer.cs" />
+    <Compile Include="Migrations\201801160956376_ChangeKeysGameProducer.Designer.cs">
+      <DependentUpon>201801160956376_ChangeKeysGameProducer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Implementation\GameRepository.cs" />
@@ -95,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801090901137_AddImageFieldToGame.resx">
       <DependentUpon>201801090901137_AddImageFieldToGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801160956376_ChangeKeysGameProducer.resx">
+      <DependentUpon>201801160956376_ChangeKeysGameProducer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

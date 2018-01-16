@@ -4,9 +4,6 @@ using GameStore.Domains.Domain;
 using static GameStore.Services.Util.AppMapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameStore.Services.Services.Implementation
 {
@@ -31,6 +28,11 @@ namespace GameStore.Services.Services.Implementation
             return GameStoreMapper.Map<ICollection<Game>, ICollection<GameInfoTransferModel>>(games);
         }
 
+        public GameModel GetModelFromTransfer(GameCreationTransferModel transferModel)
+        {
+            return GameStoreMapper.Map<GameCreationTransferModel, GameModel>(transferModel);
+        }
+
         public GameModel GetItemById(Guid id)
         {
             var game = gameRepository.GetItemById(id);
@@ -46,6 +48,25 @@ namespace GameStore.Services.Services.Implementation
 
         public void Add(GameModel item)
         {
+            if(item == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            item.Id = Guid.NewGuid();
+            var gameEntity = GameStoreMapper.Map<GameModel, Game>(item);
+            gameRepository.Add(gameEntity);
+        }
+
+        public void Add(GameModel item, string path)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            item.Id = Guid.NewGuid();
+            item.Image = path;
             var gameEntity = GameStoreMapper.Map<GameModel, Game>(item);
             gameRepository.Add(gameEntity);
         }
