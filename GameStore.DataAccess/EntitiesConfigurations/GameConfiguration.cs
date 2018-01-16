@@ -1,11 +1,5 @@
 ﻿using GameStore.DataAccess.EntityModels;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameStore.DataAccess.EntitiesConfigurations
 {
@@ -45,8 +39,8 @@ namespace GameStore.DataAccess.EntitiesConfigurations
                 .Map(m =>
                 {
                     m.ToTable("GameProducer");
-                    m.MapLeftKey("ProducerId");
-                    m.MapRightKey("GameId");
+                    m.MapLeftKey("GameId");
+                    m.MapRightKey("ProducerId");
                 }
                 );
         }

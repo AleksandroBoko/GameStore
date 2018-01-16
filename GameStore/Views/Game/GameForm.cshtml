@@ -1,10 +1,12 @@
 ﻿<script src="~/scripts/jquery-1.10.2.min.js"></script>
 <script src="~/scripts/clients/genresClient.js"></script>
 <script src="~/scripts/clients/studiosClient.js"></script>
+<script src="~/scripts/clients/producersClient.js"></script>
 <script>
     $(document).ready(function () {
         getAllGenres(writeGenresResponse);
         getAllStudios(writeStudiosResponse);
+        getAllProducers(writeProducersResponse);
     })
 
     function writeGenresResponse(genres) {
@@ -21,6 +23,14 @@
             strResult += "<option value=" + studio.Id + ">" + studio.Name + "</option>"
         })
         $("#studioId").html(strResult);
+    }
+
+    function writeProducersResponse(producers) {
+        var strResult = "";
+        $.each(producers, function (index, producer) {
+            strResult += "<option value=" + producer.Id + ">" + producer.Name + "</option>"
+        })
+        $("#producerId").html(strResult);
     }
 
 </script>
@@ -44,6 +54,12 @@
             </li>
             <li>
                 <select id="studioId" name="StudioId"></select>
+            </li>
+            <li>
+                <label for="producerId">Producers:</label>
+            </li>
+            <li>
+                <select id="producerId" name="Producers" multiple></select>
             </li>
             <li>
                 <label for="gameDate">Game production date:</label>
@@ -70,7 +86,7 @@
                 <input id="gameImage" name="Image" type="file" />
             </li>
             <li>
-                <input id="gameSubmit" name="GameSubmit" type="submit" value="Submit">
+                <input id="gameSubmit" name="GameSubmit" type="submit" value="Submit" />
             </li>
         </ul>
     </form>

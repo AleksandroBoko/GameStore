@@ -1,8 +1,7 @@
-﻿using GameStore.Domains.Domain;
+﻿using GameStore.Common;
+using GameStore.Domains.Domain;
 using GameStore.Services.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,7 +9,7 @@ namespace GameStore.Controllers
 {
     public class GameController : Controller
     {
-        public GameController(IGenreService genreService, IStudioService studioService, 
+        public GameController(IGenreService genreService, IStudioService studioService,
             IProducerService producerService, IGameService gameService)
         {
             this.genreService = genreService;
@@ -29,13 +28,21 @@ namespace GameStore.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
-        public void CreateGame(GameCreationTransferModel game, HttpPostedFileBase Image)
+        public void CreateGame(GameCreationTransferModel game, HttpPostedFileBase image)
         {
-            var tempGame = game;
-            var path = $"~/Content/images/{System.IO.Path.GetFileName(Image.FileName)}";
-            Image.SaveAs(Server.MapPath(path));          
-        }        
+            if (game == null || image == null)
+            {
+                throw new ArgumentNullException("One of the parameters is null");
+            }
+            else
+            {
+                var gameModel = gameService.GetModelFromTransfer(game);
+                var path = $"{ClientConfig.IMAGES_PATH}{System.IO.Path.GetFileName(image.FileName)}";
+                gameService.Add(gameModel, path);
+                image.SaveAs(Server.MapPath(gameModel.Image));
+            }
+        }
     }
 }
