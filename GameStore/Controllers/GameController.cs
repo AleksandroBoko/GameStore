@@ -1,48 +1,33 @@
-﻿using GameStore.Common;
-using GameStore.Domains.Domain;
+﻿using GameStore.Domains.Domain;
 using GameStore.Services.Services;
 using System;
-using System.Web;
-using System.Web.Mvc;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace GameStore.Controllers
 {
-    public class GameController : Controller
+    [RoutePrefix("api/game")]
+    public class GameController : ApiController
     {
-        public GameController(IGenreService genreService, IStudioService studioService,
-            IProducerService producerService, IGameService gameService)
+        public GameController(IGameService gameService, IStudioService studioService,
+            IGenreService genreService)
         {
-            this.genreService = genreService;
-            this.studioService = studioService;
-            this.producerService = producerService;
             this.gameService = gameService;
+            this.studioService = studioService;
+            this.genreService = genreService;
         }
 
-        private readonly IGenreService genreService;
-        private readonly IStudioService studioService;
-        private readonly IProducerService producerService;
         private readonly IGameService gameService;
+        private readonly IStudioService studioService;
+        private readonly IGenreService genreService;
 
-        // GET: Game
-        public ActionResult GameForm()
+        [Route("{id}")]
+        public ICollection<GameRateTransferModel> GetGamesByGenreId(Guid id)
         {
-            return View();
+            var genre = genreService.GetGenreInfoTransferById(id);
+            return genre != null ? genre.Games : new List<GameRateTransferModel>();
         }
 
-        [HttpPost]
-        public void CreateGame(GameCreationTransferModel game, HttpPostedFileBase image)
-        {
-            if (game == null || image == null)
-            {
-                throw new ArgumentNullException("One of the parameters is null");
-            }
-            else
-            {
-                var gameModel = gameService.GetModelFromTransfer(game);
-                var path = $"{ClientConfig.IMAGES_PATH}{System.IO.Path.GetFileName(image.FileName)}";
-                gameService.Add(gameModel, System.IO.Path.GetFileName(image.FileName));
-                image.SaveAs(Server.MapPath(path));
-            }
-        }
+        public IEnumerable<GameInfoTransferModel> GetGames() => gameService.GetGameInfoTransferAll();
     }
 }
