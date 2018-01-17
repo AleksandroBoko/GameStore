@@ -9,6 +9,8 @@ namespace GameStore.Controllers
     [RoutePrefix("api/game")]
     public class GameController : ApiController
     {
+        const int TOP_RATED_GAME = 10;
+
         public GameController(IGameService gameService, IStudioService studioService,
             IGenreService genreService)
         {
@@ -29,5 +31,8 @@ namespace GameStore.Controllers
         }
 
         public IEnumerable<GameInfoTransferModel> GetGames() => gameService.GetGameInfoTransferAll();
+
+        [Route("toprated/")]
+        public IEnumerable<GameRateTransferModel> GetRatedGames() => gameService.GetTopRatedGames(TOP_RATED_GAME);
     }
 }

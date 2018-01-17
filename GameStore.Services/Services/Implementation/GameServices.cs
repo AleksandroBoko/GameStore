@@ -4,6 +4,7 @@ using GameStore.Domains.Domain;
 using static GameStore.Services.Util.AppMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GameStore.Services.Services.Implementation
 {
@@ -81,6 +82,13 @@ namespace GameStore.Services.Services.Implementation
         {
             var game = GameStoreMapper.Map<GameModel, Game>(item);
             gameRepository.Remove(game);
+        }
+
+        public ICollection<GameRateTransferModel> GetTopRatedGames(int rate)
+        {
+            var games = gameRepository.GetAll();
+            var ratedGames = games.OrderByDescending(x => x.Rate).Take(rate).ToList();
+            return GameStoreMapper.Map<ICollection<Game>, ICollection<GameRateTransferModel>>(ratedGames);
         }
     }
 }
