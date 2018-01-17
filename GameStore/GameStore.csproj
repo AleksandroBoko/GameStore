@@ -183,6 +183,7 @@
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\clients\gamesClient.js" />
     <Content Include="scripts\clients\genresClient.js" />
     <Content Include="scripts\clients\producersClient.js" />
     <Content Include="scripts\jquery-1.10.2.js" />

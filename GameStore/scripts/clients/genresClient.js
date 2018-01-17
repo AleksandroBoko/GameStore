@@ -12,3 +12,18 @@
     })
 }
 
+function getGamesByGenreId(GenreGamesResponse, genreId) {
+    $.ajax({
+        url: '/api/genre/genregames/' + genreId,
+        type: 'GET',
+        dataType: 'json',
+
+        success: function (data) {
+            GenreGamesResponse(data);
+        },
+        error: function (x, y, z) {
+            alert(x + '\n' + y + '\n' + z);
+        }
+    })
+}
+

@@ -40,8 +40,8 @@ namespace GameStore.Controllers
             {
                 var gameModel = gameService.GetModelFromTransfer(game);
                 var path = $"{ClientConfig.IMAGES_PATH}{System.IO.Path.GetFileName(image.FileName)}";
-                gameService.Add(gameModel, path);
-                image.SaveAs(Server.MapPath(gameModel.Image));
+                gameService.Add(gameModel, System.IO.Path.GetFileName(image.FileName));
+                image.SaveAs(Server.MapPath(path));
             }
         }
     }
