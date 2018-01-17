@@ -12,6 +12,20 @@
     })
 }
 
+function getTopRatedGames(gamesResponse) {
+    $.ajax({
+        url: '/api/game/toprated',
+            type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+        gamesResponse(data);
+        },
+            error: function (x, y, z) {
+        alert(x + '\n' +y + '\n' +z);
+        }
+    })
+    }
+
 function getGamesByGenreId(GenreGamesResponse, genreId) {
     $.ajax({
         url: '/api/game/by-genre/' + genreId,

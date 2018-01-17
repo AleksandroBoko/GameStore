@@ -24,7 +24,8 @@
         })
         strResult += "</table>";
         strResult += "<div><button onclick=" + "studiosClickHandler()" + ">Studios</button>";
-        strResult += "<button onclick=" + "genresClickHandler()" + ">Genres</button></div>";
+        strResult += "<button onclick=" + "genresClickHandler()" + ">Genres</button>";
+        strResult += "<button onclick=" + "topGameClickHandler()" + ">Top 10 rated games</button></div>";
         $("#tableBlock").html(strResult);
     }
 
@@ -66,6 +67,16 @@
         $("#ganreGamesTable").html(strResult);        
     }
 
+    function writeTopRatedGamesResponse(games) {
+        var strResult = "<table><thead><tr><th>Number</th><th>Name</th><th>Rate</th></tr></thead>";
+        $.each(games, function (index, game) {
+            strResult += "<tr><td>" + (index + 1) + "</td><td>" + game.Name + "</td><td>" + game.Rate + "</td></tr>";
+        })
+        strResult += "</table>";
+        strResult += "<div><button onclick=" + "gamesClickHandler()" + ">Back</button></div>"
+        $("#tableBlock").html(strResult);
+    }
+
     function studiosClickHandler() {
         getAllStudios(writeStudioResponse);
     }
@@ -84,5 +95,9 @@
         
         var index = event.currentTarget.selectedIndex;
         getGamesByGenreId(writeGenreGamesResponse, event.currentTarget.options[index].value);
+    }
+
+    function topGameClickHandler() {
+        getTopRatedGames(writeTopRatedGamesResponse);
     }
 </script>
