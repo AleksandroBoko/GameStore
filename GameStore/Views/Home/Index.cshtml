@@ -1,75 +1,24 @@
 ﻿<div id="tableBlock" class="tableBlock"></div>
 <link href="~/Content/Main.css" rel="stylesheet" />
 <script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script src="~/scripts/clients/genresClient.js"></script>
+<script src="~/scripts/clients/studiosClient.js"></script>
+<script src="~/scripts/clients/gamesClient.js"></script>
 <script>
+    const IMAGE_PATH = "../Content/images/";
+
     $(document).ready(function () {
 
-        getAllGames();
+        getAllGames(writeGameResponse);
 
     })
 
-    function getAllGames() {
-        $.ajax({
-            url: '/api/main/games',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                writeResponse(data);
-            },
-            error: function (x, y, z) {
-                alert(x + '\n' + y + '\n' + z);
-            }
-        })
-    }
-
-    function getAllStudios() {
-        $.ajax({
-            url: '/api/main/studios',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                writeStudioResponse(data);
-            },
-            error: function (x, y, z) {
-                alert(x + '\n' + y + '\n' + z);
-            }
-        })
-    }
-
-    function getAllGenres() {
-        $.ajax({
-            url: '/api/main/genres',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                writeGenreResponse(data);
-            },
-            error: function (x, y, z) {
-                alert(x + '\n' + y + '\n' + z);
-            }
-        })
-    }
-
-    function getGenreGames(genreId) {
-        $.ajax({
-            url: '/api/main/genregames/' + genreId,
-            type: 'GET',
-            dataType: 'json',
-                
-            success: function (data) {
-                writeGenreGamesResponse(data);
-            },
-            error: function (x, y, z) {
-                alert(x + '\n' + y + '\n' + z);
-            }
-        })
-    }
-
-    function writeResponse(games) {
-        var strResult = "<table><thead><tr><th>Number</th><th>Name</th><th>Genre</th><th>Studio</th>" +
+    function writeGameResponse(games) {
+        var strResult = "<table><thead><tr><th>Number</th><th>Name</th><th>Image</th><th>Genre</th><th>Studio</th>" +
                         "<th>Date</th><th>Rate</th><th>Description</th><th>Producers</th><tr></thead>";
         $.each(games, function (index, game) {
-            strResult += "<tr><td>" + (index + 1) + "</td><td>" + game.Name + "</td><td>" + game.GenreName +
+            strResult += "<tr><td>" + (index + 1) + "</td><td>" + game.Name + "</td><td>" + "<img src=" + IMAGE_PATH + game.Image + " />" +
+            "</td><td>" + game.GenreName +
             "</td><td>" + game.StudioName + "</td><td>" + (new Date(Date.parse(game.Date))).toLocaleDateString() + "</td><td>" + game.Rate + "</td><td>"
             + game.Description + "</td><td>" + game.ProducersNames + "</td></tr> ";
         })
@@ -102,7 +51,7 @@
             let genre = document.getElementById("genre");
             if (genre) {
                 let selectedId = genre.value;
-                getGenreGames(selectedId);
+                getGamesByGenreId(writeGenreGamesResponse, selectedId);
             }
         }
     }
@@ -118,15 +67,15 @@
     }
 
     function studiosClickHandler() {
-        getAllStudios();
+        getAllStudios(writeStudioResponse);
     }
 
     function gamesClickHandler() {
-        getAllGames();
+        getAllGames(writeGameResponse);
     }
 
     function genresClickHandler() {
-        getAllGenres();
+        getAllGenres(writeGenreResponse);
     }
 
     function genresChangeHandler(event) {        
@@ -134,6 +83,6 @@
             return;
         
         var index = event.currentTarget.selectedIndex;
-        getGenreGames(event.currentTarget.options[index].value);
+        getGamesByGenreId(writeGenreGamesResponse, event.currentTarget.options[index].value);
     }
 </script>
