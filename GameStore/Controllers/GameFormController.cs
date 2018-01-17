@@ -7,9 +7,9 @@ using System.Web.Mvc;
 
 namespace GameStore.Controllers
 {
-    public class MainController : Controller
+    public class GameFormController : Controller
     {
-        public MainController(IGenreService genreService, IStudioService studioService,
+        public GameFormController(IGenreService genreService, IStudioService studioService,
             IProducerService producerService, IGameService gameService)
         {
             this.genreService = genreService;
@@ -24,7 +24,7 @@ namespace GameStore.Controllers
         private readonly IGameService gameService;
 
         // GET: Game
-        public ActionResult GameForm()
+        public ActionResult Form()
         {
             return View();
         }
