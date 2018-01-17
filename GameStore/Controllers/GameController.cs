@@ -21,7 +21,7 @@ namespace GameStore.Controllers
         private readonly IStudioService studioService;
         private readonly IGenreService genreService;
 
-        [Route("{id}")]
+        [Route("by-genre/{id}")]
         public ICollection<GameRateTransferModel> GetGamesByGenreId(Guid id)
         {
             var genre = genreService.GetGenreInfoTransferById(id);

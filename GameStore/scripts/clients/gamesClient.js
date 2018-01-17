@@ -14,7 +14,7 @@
 
 function getGamesByGenreId(GenreGamesResponse, genreId) {
     $.ajax({
-        url: '/api/game/' + genreId,
+        url: '/api/game/by-genre/' + genreId,
         type: 'GET',
         dataType: 'json',
 
