@@ -56,6 +56,8 @@ namespace GameStore.Services.Util
 
                 cfg.CreateMap<Genre, GenreInfoTransferModel>();
                 cfg.CreateMap<Producer, ProducerInfoTransferModel>();
+
+                cfg.CreateMap<Studio, StudioRateInfo>();
             });
 
             GameStoreMapper = configuration.CreateMapper();

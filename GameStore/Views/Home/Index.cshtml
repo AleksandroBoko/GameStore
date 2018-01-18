@@ -25,7 +25,8 @@
         strResult += "</table>";
         strResult += "<div><button onclick=" + "studiosClickHandler()" + ">Studios</button>";
         strResult += "<button onclick=" + "genresClickHandler()" + ">Genres</button>";
-        strResult += "<button onclick=" + "topGameClickHandler()" + ">Top 10 rated games</button></div>";
+        strResult += "<button onclick=" + "topGameClickHandler()" + ">Top 10 rated games</button>";
+        strResult += "<button onclick=" + "studioRatingsClickHandler()" + ">Studios rating</button></div>";
         $("#tableBlock").html(strResult);
     }
 
@@ -77,6 +78,16 @@
         $("#tableBlock").html(strResult);
     }
 
+    function writeStudiosRatingResponse(studios) {
+        var strResult = "<table><thead><tr><th>Number</th><th>Name</th><th>Rate</th></tr></thead>";
+        $.each(studios, function (index, studio) {
+            strResult += "<tr><td>" + (index + 1) + "</td><td>" + studio.Name + "</td><td>" + studio.Rate + "</td></tr>";
+        })
+        strResult += "</table>";
+        strResult += "<div><button onclick=" + "gamesClickHandler()" + ">Back</button></div>"
+        $("#tableBlock").html(strResult);
+    }
+
     function studiosClickHandler() {
         getAllStudios(writeStudioResponse);
     }
@@ -99,5 +110,9 @@
 
     function topGameClickHandler() {
         getTopRatedGames(writeTopRatedGamesResponse);
+    }
+
+    function studioRatingsClickHandler() {
+        getStudiosRatings(writeStudiosRatingResponse);
     }
 </script>
