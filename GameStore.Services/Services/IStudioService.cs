@@ -10,5 +10,6 @@ namespace GameStore.Services.Services
     public interface IStudioService:IService<StudioModel>
     {
         ICollection<StudioInfoTransferModel> GetStudioInfoTransferAll();
+        ICollection<StudioRateInfo> GetAllStudiosRatings();
     }
 }

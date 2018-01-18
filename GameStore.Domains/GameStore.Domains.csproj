@@ -50,6 +50,7 @@
     <Compile Include="Domain\StudioInfoTransferModel.cs" />
     <Compile Include="Domain\StudioModel.cs" />
     <Compile Include="Domain\GenreModel.cs" />
+    <Compile Include="Domain\StudioRateInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

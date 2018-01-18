@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GameStore.DataAccess.Repositories.Implementation;
 
 namespace GameStore.Services.Services.Implementation
 {
@@ -16,9 +17,11 @@ namespace GameStore.Services.Services.Implementation
         public StudioServices(IRepository<Studio> repository)
         {
             studioRepository = repository;
+            gameService = new GameServices(GameRepository.GetInstance());
         }
 
         private readonly IRepository<Studio> studioRepository;
+        private readonly IGameService gameService;
 
         public void Add(StudioModel item)
         {
@@ -61,6 +64,29 @@ namespace GameStore.Services.Services.Implementation
         {
             var studio = GameStoreMapper.Map<StudioModel, Studio>(item);
             studioRepository.Update(studio);
+        }
+
+        public ICollection<StudioRateInfo> GetAllStudiosRatings()
+        {
+            var studios = studioRepository.GetAll();
+            var ratedStudios = GameStoreMapper.Map<ICollection<Studio>, ICollection<StudioRateInfo>>(studios);
+            if (ratedStudios.Any())
+            {
+                foreach (var studio in ratedStudios)
+                {
+                    var games = gameService.GetAll();
+                    if (games.Any())
+                    {
+                        studio.Rate = games.Where(x => x.StudioId == studio.Id).Sum(x => x.Rate);
+                    }
+                }
+
+                return ratedStudios.OrderByDescending(x => x.Rate).ToList();
+            }
+            else
+            {
+                return ratedStudios;
+            }
         }
     }
 }

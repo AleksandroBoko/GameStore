@@ -16,5 +16,8 @@ namespace GameStore.Controllers
         private readonly IStudioService studioService;
 
         public IEnumerable<StudioModel> GetStudios() => studioService.GetAll();
+
+        [Route("ratings")]
+        public IEnumerable<StudioRateInfo> GetRatings() => studioService.GetAllStudiosRatings();
     }
 }
