@@ -14,7 +14,7 @@
 
 function getStudiosRatings(studiosResponse) {
     $.ajax({
-        url: '/api/studio/getratings',
+        url: '/api/studio/ratings',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
