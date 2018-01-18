@@ -176,6 +176,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Main.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\StudioForm.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -211,6 +212,7 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\ProducerController.cs" />
     <Compile Include="Controllers\StudioController.cs" />
+    <Compile Include="Controllers\StudioFormController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -233,6 +235,7 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\GameForm\Form.cshtml" />
+    <Content Include="Views\StudioForm\Form.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
