@@ -1,3 +1,7 @@
 ﻿.form-main {
     margin-top: 20px;
 }
+
+    .form-main div {
+        margin-top: 10px;        
+    }

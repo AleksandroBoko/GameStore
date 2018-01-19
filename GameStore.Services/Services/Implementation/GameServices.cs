@@ -25,7 +25,10 @@ namespace GameStore.Services.Services.Implementation
 
         public ICollection<GameInfoTransferModel> GetGameInfoTransferAll()
         {
-            var games = gameRepository.GetAll();
+            var games = gameRepository.GetAll()
+                .OrderByDescending(x => x.Date)
+                .ToList();
+
             return GameStoreMapper.Map<ICollection<Game>, ICollection<GameInfoTransferModel>>(games);
         }
 

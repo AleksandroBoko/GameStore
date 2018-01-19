@@ -17,7 +17,7 @@
         var strResult = "<table><thead><tr><th>Number</th><th>Name</th><th>Image</th><th>Genre</th><th>Studio</th>" +
                         "<th>Date</th><th>Rate</th><th>Description</th><th>Producers</th><tr></thead>";
         $.each(games, function (index, game) {
-            strResult += "<tr><td>" + (index + 1) + "</td><td>" + game.Name + "</td><td>" + "<img src=" + IMAGE_PATH + game.Image + " />" +
+            strResult += "<tr><td>" + (index + 1) + "</td><td>" + game.Name + "</td><td>" + "<img class=game-image src=" + IMAGE_PATH + game.Image + " />" +
             "</td><td>" + game.GenreName +
             "</td><td>" + game.StudioName + "</td><td>" + (new Date(Date.parse(game.Date))).toLocaleDateString() + "</td><td>" + game.Rate + "</td><td>"
             + game.Description + "</td><td>" + game.ProducersNames + "</td></tr> ";
@@ -48,7 +48,7 @@
         })
         strResult += "</select><div id=ganreGamesTable></div></div>";
         $("#tableBlock").html(strResult);
-        
+
         if (genres && genres.length > 0) {
             let genre = document.getElementById("genre");
             if (genre) {
@@ -58,14 +58,14 @@
         }
     }
 
-    function writeGenreGamesResponse(games) {        
+    function writeGenreGamesResponse(games) {
         var strResult = "<table><thead><tr><th>Game</th><th>Rate</th></tr></thead>";
         $.each(games, function (index, game) {
             strResult += "<tr><td>" + game.Name + "</td><td>" + game.Rate + "</td></tr>";
         })
         strResult += "</table>";
         strResult += "<div><button onclick=" + "gamesClickHandler()" + ">Back</button></div>";
-        $("#ganreGamesTable").html(strResult);        
+        $("#ganreGamesTable").html(strResult);
     }
 
     function writeTopRatedGamesResponse(games) {
@@ -89,7 +89,7 @@
     }
 
     function studiosClickHandler() {
-        getAllStudios(writeStudioResponse);
+        getStudiosGames(writeStudioResponse);
     }
 
     function gamesClickHandler() {
@@ -100,10 +100,10 @@
         getAllGenres(writeGenreResponse);
     }
 
-    function genresChangeHandler(event) {        
+    function genresChangeHandler(event) {
         if (event == null)
             return;
-        
+
         var index = event.currentTarget.selectedIndex;
         getGamesByGenreId(writeGenreGamesResponse, event.currentTarget.options[index].value);
     }

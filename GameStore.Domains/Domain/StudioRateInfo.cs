@@ -10,6 +10,6 @@ namespace GameStore.Domains.Domain
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public int Rate { get; set; }
+        public double Rate { get; set; }
     }
 }

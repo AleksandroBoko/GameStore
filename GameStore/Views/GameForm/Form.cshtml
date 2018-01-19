@@ -2,6 +2,8 @@
 <script src="~/scripts/clients/genresClient.js"></script>
 <script src="~/scripts/clients/studiosClient.js"></script>
 <script src="~/scripts/clients/producersClient.js"></script>
+<script src="~/scripts/clients/gamesClient.js"></script>
+<link href="~/Content/GameForm.css" rel="stylesheet" />
 <script>
     $(document).ready(function () {
         getAllGenres(writeGenresResponse);
@@ -33,61 +35,48 @@
         $("#producerId").html(strResult);
     }
 
+    function backClickHandler() {
+        document.location.href = "/Home";
+    }
+
 </script>
-<div>
+<div class="game-form">
     <form method="post" action="/GameForm/CreateGame" enctype="multipart/form-data">
-        <ul>
-            <li>
-                <label for="gameName">Name of the game:</label>
-            </li>
-            <li>
-                <input id="gameName" name="Name">
-            </li>
-            <li>
-                <label for="genreId">Genre of the game:</label>
-            </li>
-            <li>
-                <select id="genreId" name="GenreId"></select>
-            </li>
-            <li>
-                <label for="studioId">Studio of the game:</label>
-            </li>
-            <li>
-                <select id="studioId" name="StudioId"></select>
-            </li>
-            <li>
-                <label for="producerId">Producers:</label>
-            </li>
-            <li>
-                <select id="producerId" name="Producers" multiple></select>
-            </li>
-            <li>
-                <label for="gameDate">Game production date:</label>
-            </li>
-            <li>
-                <input id="gameDate" name="Date" type="date" />
-            </li>
-            <li>
-                <label for="gameRate">Game's rate:</label>
-            </li>
-            <li>
-                <input id="gameRate" name="Rate" type="number" />
-            </li>
-            <li>
-                <label for="gameDescription">Description of the game</label>
-            </li>
-            <li>
-                <textarea id="gameDescription" name="Description">...Type here</textarea>
-            </li>
-            <li>
-                <label for="gameImage">Image of the game</label>
-            </li>
-            <li>
-                <input id="gameImage" name="Image" type="file" />
-            </li>
-            <li>
-                <input id="gameSubmit" name="GameSubmit" type="submit" value="Submit" />
-            </li>
-        </ul>
+        <div>
+            <label for="gameName">Name of the game:</label>
+            <input id="gameName" name="Name">
+        </div>
+        <div>
+            <label for="genreId">Genre of the game:</label>
+            <select id="genreId" name="GenreId"></select>
+        </div>
+        <div>
+            <label for="studioId">Studio of the game:</label>
+            <select id="studioId" name="StudioId"></select>
+        </div>
+        <div>
+            <label for="producerId">Producers:</label>
+            <select id="producerId" name="Producers" multiple></select>
+        </div>
+        <div>
+            <label for="gameDate">Game production date:</label>
+            <input id="gameDate" name="Date" type="date" />
+        </div>
+        <div>
+            <label for="gameRate">Game's rate:</label>
+            <input id="gameRate" name="Rate" type="number" />
+        </div>
+        <div>
+            <label for="gameDescription">Description of the game</label>
+            <textarea id="gameDescription" name="Description">...Type here</textarea>
+        </div>
+        <div>
+            <label for="gameImage">Image of the game</label>
+            <input id="gameImage" name="Image" type="file" />
+        </div>
+        <div class="form-controls">
+            <input id="gameSubmit" name="GameSubmit" type="submit" value="Submit" />
+            <input id="gameBack" type="button" value="Back" onclick="backClickHandler()"/>
+        </div>
     </form>
 </div>
