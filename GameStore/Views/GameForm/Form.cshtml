@@ -41,37 +41,38 @@
 
 </script>
 <div class="game-form">
+    <h3>Creating a game</h3>
     <form method="post" action="/GameForm/CreateGame" enctype="multipart/form-data">
-        <div>
+        <div class="game-field">
             <label for="gameName">Name of the game:</label>
             <input id="gameName" name="Name">
         </div>
-        <div>
+        <div class="game-field">
             <label for="genreId">Genre of the game:</label>
             <select id="genreId" name="GenreId"></select>
         </div>
-        <div>
+        <div class="game-field">
             <label for="studioId">Studio of the game:</label>
             <select id="studioId" name="StudioId"></select>
         </div>
-        <div>
+        <div class="game-field">
             <label for="producerId">Producers:</label>
             <select id="producerId" name="Producers" multiple></select>
         </div>
-        <div>
+        <div class="game-field">
             <label for="gameDate">Game production date:</label>
             <input id="gameDate" name="Date" type="date" />
         </div>
-        <div>
+        <div class="game-field">
             <label for="gameRate">Game's rate:</label>
             <input id="gameRate" name="Rate" type="number" />
         </div>
-        <div>
-            <label for="gameDescription">Description of the game</label>
-            <textarea id="gameDescription" name="Description">...Type here</textarea>
+        <div class="game-field">
+            <label for="gameDescription">Description of the game:</label>
+            <textarea id="gameDescription" name="Description"></textarea>
         </div>
-        <div>
-            <label for="gameImage">Image of the game</label>
+        <div class="game-field">
+            <label for="gameImage">Image of the game:</label>
             <input id="gameImage" name="Image" type="file" />
         </div>
         <div class="form-controls">
