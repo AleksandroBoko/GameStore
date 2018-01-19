@@ -83,7 +83,9 @@ namespace GameStore.Services.Services.Implementation
                     var games = gameService.GetAll();
                     if (games.Any())
                     {
-                        studio.Rate = games.Where(x => x.StudioId == studio.Id).Sum(x => x.Rate);
+                        var gamesByStudio = games.Where(x => x.StudioId == studio.Id);
+                        var rate = gamesByStudio.Any() ? gamesByStudio.Average(x => x.Rate) : 0;
+                        studio.Rate = Math.Round(rate, 2);
                     }
                 }
 
