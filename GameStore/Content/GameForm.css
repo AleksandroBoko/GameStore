@@ -1,13 +1,67 @@
 ﻿.game-form {
-    margin-top: 10px;
-    max-width: 600px;
+    margin: 10px auto;
+    max-width: 420px;
 }
 
-    .game-form div {
-        margin-top: 10px;
-        vertical-align: text-top;
+    .game-form h3 {
+        text-align: center;
+        background: #f0f0f0;
+        border: 1px solid #CCE2FF;
+        padding: 5px;
+        vertical-align: top;
+    }
+
+    .game-form form {
+        border: 1px solid #CCE2FF;
+        padding: 10px;
     }
 
 #gameImage {
     display: inline;
+}
+
+.game-field {
+    margin-top: 10px;
+    text-align: right;
+    vertical-align: top;
+}
+
+    .game-field label {
+        text-align: right;
+        vertical-align: top;
+        margin-right: 20px;
+    }
+
+    .game-field input {
+        width: 200px;
+        text-align: right;
+    }
+
+    .game-field textarea {
+        width: 200px;
+        text-align: right;
+    }
+
+    .game-field select {
+        width: 200px;
+        text-align: right;
+    }
+
+.form-controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#gameSubmit {
+    border-radius: 5px;
+    background-color: #4CAF50;
+    border-radius: 4px;
+    color: white;
+}
+
+#gameBack {
+    border-radius: 5px;
+    background-color: #555555;
+    border-radius: 4px;
+    color: white;
 }
