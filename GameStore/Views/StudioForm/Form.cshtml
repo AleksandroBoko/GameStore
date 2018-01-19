@@ -1,8 +1,18 @@
-﻿<link href="~/Content/StudioForm.css" rel="stylesheet"/>
+﻿<link href="~/Content/StudioForm.css" rel="stylesheet" />
+<script>
+    function backClickHandler() {
+        document.location.href = "/Home";
+    }
+</script>
 <div class="form-main">
     <form action="/StudioForm/CreateStudio" method="post">
-        <label for="name">Studio's Name</label>
-        <input id="name" name="Name" required />
-        <input name="studioSubmit" type="submit" value="Submit" />
+        <div>
+            <label for="name">Studio's Name</label>
+            <input id="name" name="Name" required />
+        </div>
+        <div>
+            <input name="studioSubmit" type="submit" value="Submit" />
+            <input type="button" value="Back" onclick="backClickHandler()"/>
+        </div>
     </form>
 </div>
