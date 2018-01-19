@@ -48,7 +48,7 @@
         })
         strResult += "</select><div id=ganreGamesTable></div></div>";
         $("#tableBlock").html(strResult);
-        
+
         if (genres && genres.length > 0) {
             let genre = document.getElementById("genre");
             if (genre) {
@@ -58,14 +58,14 @@
         }
     }
 
-    function writeGenreGamesResponse(games) {        
+    function writeGenreGamesResponse(games) {
         var strResult = "<table><thead><tr><th>Game</th><th>Rate</th></tr></thead>";
         $.each(games, function (index, game) {
             strResult += "<tr><td>" + game.Name + "</td><td>" + game.Rate + "</td></tr>";
         })
         strResult += "</table>";
         strResult += "<div><button onclick=" + "gamesClickHandler()" + ">Back</button></div>";
-        $("#ganreGamesTable").html(strResult);        
+        $("#ganreGamesTable").html(strResult);
     }
 
     function writeTopRatedGamesResponse(games) {
@@ -89,7 +89,7 @@
     }
 
     function studiosClickHandler() {
-        getAllStudios(writeStudioResponse);
+        getStudiosGames(writeStudioResponse);
     }
 
     function gamesClickHandler() {
@@ -100,10 +100,10 @@
         getAllGenres(writeGenreResponse);
     }
 
-    function genresChangeHandler(event) {        
+    function genresChangeHandler(event) {
         if (event == null)
             return;
-        
+
         var index = event.currentTarget.selectedIndex;
         getGamesByGenreId(writeGenreGamesResponse, event.currentTarget.options[index].value);
     }
