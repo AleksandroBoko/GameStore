@@ -17,10 +17,10 @@ namespace GameStore.Controllers
 
         public IEnumerable<StudioModel> GetStudios() => studioService.GetAll();
 
-        [Route("withgames")]
+        [Route("with-games")]
         public IEnumerable<StudioInfoTransferModel> GetStudiosWithGames() => studioService.GetStudioInfoTransferAll();
 
-        [Route("withratings")]
+        [Route("with-ratings")]
         public IEnumerable<StudioRateInfo> GetStudiosWithRatings() => studioService.GetAllStudiosRatings();
     }
 }
