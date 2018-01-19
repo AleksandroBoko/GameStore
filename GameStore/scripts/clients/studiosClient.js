@@ -14,7 +14,7 @@
 
 function getStudiosGames(studiosResponse) {
     $.ajax({
-        url: '/api/studio/games',
+        url: '/api/studio/with-games',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
@@ -28,7 +28,7 @@ function getStudiosGames(studiosResponse) {
 
 function getStudiosRatings(studiosResponse) {
     $.ajax({
-        url: '/api/studio/ratings',
+        url: '/api/studio/with-ratings',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
