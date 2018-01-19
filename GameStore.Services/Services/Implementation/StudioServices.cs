@@ -25,6 +25,12 @@ namespace GameStore.Services.Services.Implementation
 
         public void Add(StudioModel item)
         {
+            if(item == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            item.Id = Guid.NewGuid();
             var studioEntity = GameStoreMapper.Map<StudioModel, Studio>(item);
             studioRepository.Add(studioEntity);
         }
