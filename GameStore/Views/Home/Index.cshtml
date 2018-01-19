@@ -17,7 +17,7 @@
         var strResult = "<table><thead><tr><th>Number</th><th>Name</th><th>Image</th><th>Genre</th><th>Studio</th>" +
                         "<th>Date</th><th>Rate</th><th>Description</th><th>Producers</th><tr></thead>";
         $.each(games, function (index, game) {
-            strResult += "<tr><td>" + (index + 1) + "</td><td>" + game.Name + "</td><td>" + "<img src=" + IMAGE_PATH + game.Image + " />" +
+            strResult += "<tr><td>" + (index + 1) + "</td><td>" + game.Name + "</td><td>" + "<img class=game-image src=" + IMAGE_PATH + game.Image + " />" +
             "</td><td>" + game.GenreName +
             "</td><td>" + game.StudioName + "</td><td>" + (new Date(Date.parse(game.Date))).toLocaleDateString() + "</td><td>" + game.Rate + "</td><td>"
             + game.Description + "</td><td>" + game.ProducersNames + "</td></tr> ";

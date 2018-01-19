@@ -29,9 +29,9 @@
 
         .tableBlock div button {
             margin: 5px;
-        }        
+        }
 
-        .tableBlock div label {            
+        .tableBlock div label {
             font-size: 14px;
         }
 
@@ -39,3 +39,8 @@
             margin: 5px;
             font-size: 14px;
         }
+
+.game-image {
+    max-height: 64px;
+    max-width: 64px;
+}
