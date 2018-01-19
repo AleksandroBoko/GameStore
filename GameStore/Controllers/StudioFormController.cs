@@ -10,6 +10,8 @@ namespace GameStore.Controllers
 {
     public class StudioFormController : Controller
     {
+        private const string URL_REDIRECT = "/Home";
+
         public StudioFormController(IStudioService studioService)
         {
             this.studioService = studioService;
@@ -23,9 +25,10 @@ namespace GameStore.Controllers
             return View();
         }
 
-        public void CreateStudio(StudioModel studio)
+        public RedirectResult CreateStudio(StudioModel studio)
         {
             studioService.Add(studio);
+            return Redirect(URL_REDIRECT);
         }
     }
 }

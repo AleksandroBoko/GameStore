@@ -9,6 +9,8 @@ namespace GameStore.Controllers
 {
     public class GameFormController : Controller
     {
+        private const string URL_REDIRECT = "/Home";
+
         public GameFormController(IGenreService genreService, IStudioService studioService,
             IProducerService producerService, IGameService gameService)
         {
@@ -30,7 +32,7 @@ namespace GameStore.Controllers
         }
 
         [HttpPost]
-        public void CreateGame(GameCreationTransferModel game, HttpPostedFileBase image)
+        public RedirectResult CreateGame(GameCreationTransferModel game, HttpPostedFileBase image)
         {
             if (game == null || image == null)
             {
@@ -43,6 +45,8 @@ namespace GameStore.Controllers
                 gameService.Add(gameModel, System.IO.Path.GetFileName(image.FileName));
                 image.SaveAs(Server.MapPath(path));
             }
+
+            return Redirect(URL_REDIRECT);
         }
     }
 }
