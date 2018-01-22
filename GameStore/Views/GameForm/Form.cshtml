@@ -39,10 +39,32 @@
         document.location.href = "/Home";
     }
 
+    function submitClickHandler() {
+        var modal = document.getElementById("modalWindow");
+        modal.style.display = "block";
+        var question = document.getElementById("question");
+        var game = document.getElementById("gameName");
+        question.innerHTML = "Are you sure that you want to add " + game.value + "?";
+    }
+
+    function submitHandler() {
+        return false;
+    }
+
+    function sendFormClickHandler() {
+        var form = document.getElementById("form");
+        form.submit();
+    }
+
+    function cancelClickHandler() {
+        var modal = document.getElementById("modalWindow");
+        modal.style.display = "none";
+    }
+
 </script>
 <div class="game-form">
     <h3>Creating a game</h3>
-    <form method="post" action="/GameForm/CreateGame" enctype="multipart/form-data">
+    <form id="form" method="post" action="/GameForm/CreateGame" enctype="multipart/form-data" onsubmit="return submitHandler()">
         <div class="game-field">
             <label for="gameName">Name of the game:</label>
             <input id="gameName" name="Name">
@@ -76,8 +98,16 @@
             <input id="gameImage" name="Image" type="file" />
         </div>
         <div class="form-controls">
-            <input id="gameSubmit" name="GameSubmit" type="submit" value="Submit" />
-            <input id="gameBack" type="button" value="Back" onclick="backClickHandler()"/>
+            <input id="gameSubmit" name="GameSubmit" type="submit" value="Submit" onclick="submitClickHandler()" />
+            <input id="gameBack" type="button" value="Back" onclick="backClickHandler()" />
         </div>
     </form>
+</div>
+
+<div id="modalWindow" class="modal">
+    <div id="modalContent" class="modal-content">
+        <h3 id="question"></h3>
+        <button id="sendForm" onclick="sendFormClickHandler()">Yes</button>
+        <button id="cancelSendingForm" onclick="cancelClickHandler()">No</button>
+    </div>
 </div>
