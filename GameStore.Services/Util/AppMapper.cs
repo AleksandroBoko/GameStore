@@ -46,9 +46,9 @@ namespace GameStore.Services.Util
 
                 cfg.CreateMap<Game, GameRateTransferModel>();
 
-                cfg.CreateMap<GameCreationTransferModel, GameModel>()
+                cfg.CreateMap<GameCreationTransferModel, Game>()
                     .ForMember(x => x.Producers,
-                               s => s.MapFrom(g => g.Producers.Select(p => producerService.GetItemById(p))));
+                               s => s.MapFrom(g => g.Producers.Select(p => producerRepository.GetItemById(p))));
 
                 cfg.CreateMap<Studio, StudioInfoTransferModel>()
                     .ForMember(x => x.Games,

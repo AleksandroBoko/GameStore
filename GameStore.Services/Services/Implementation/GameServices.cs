@@ -32,11 +32,6 @@ namespace GameStore.Services.Services.Implementation
             return GameStoreMapper.Map<ICollection<Game>, ICollection<GameInfoTransferModel>>(games);
         }
 
-        public GameModel GetModelFromTransfer(GameCreationTransferModel transferModel)
-        {
-            return GameStoreMapper.Map<GameCreationTransferModel, GameModel>(transferModel);
-        }
-
         public GameModel GetItemById(Guid id)
         {
             var game = gameRepository.GetItemById(id);
@@ -62,7 +57,7 @@ namespace GameStore.Services.Services.Implementation
             gameRepository.Add(gameEntity);
         }
 
-        public void Add(GameModel item, string path)
+        public void Add(GameCreationTransferModel item, string path)
         {
             if (item == null)
             {
@@ -71,7 +66,7 @@ namespace GameStore.Services.Services.Implementation
 
             item.Id = Guid.NewGuid();
             item.Image = path;
-            var gameEntity = GameStoreMapper.Map<GameModel, Game>(item);
+            var gameEntity = GameStoreMapper.Map<GameCreationTransferModel, Game>(item);
             gameRepository.Add(gameEntity);
         }
 
