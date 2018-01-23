@@ -1,31 +1,38 @@
 ﻿using GameStore.DataAccess.EntityModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameStore.DataAccess.Repositories.Implementation
 {
     public class StudioRepository : IRepository<Studio>
     {
-        private StudioRepository()
+        private StudioRepository(DbContext gameContext)
         {
-            gameContext = new GameStoreContext();
+            this.gameContext = gameContext as GameStoreContext;
+            if (this.gameContext == null)
+            {
+                throw new NullReferenceException("The context is null");
+            }
         }
 
         private readonly GameStoreContext gameContext;
-        private readonly static StudioRepository Instance = new StudioRepository();
+        private readonly static StudioRepository Instance = new StudioRepository(new GameStoreContext());
 
         public static StudioRepository GetInstance()
         {
             return Instance;
         }
 
-        public void Add(Studio item)
+        public Guid Add(Studio item)
         {
+            var addingItemId = Guid.NewGuid();
+            item.Id = addingItemId;
             gameContext.Studios.Add(item);
+
             Save();
+            return addingItemId;
         }
 
         public ICollection<Studio> GetAll()
@@ -44,13 +51,16 @@ namespace GameStore.DataAccess.Repositories.Implementation
             return gameContext.Studios.FirstOrDefault(x => x.Id == id);
         }
 
-        public void Remove(Studio item)
+        public Guid Remove(Studio item)
         {
+            var removingItemId = item.Id;
             gameContext.Studios.Remove(item);
+
             Save();
+            return removingItemId;
         }
 
-        public void Update(Studio item)
+        public Guid Update(Studio item)
         {
             var studio = GetItemById(item.Id);
             if (studio != null)
@@ -58,6 +68,8 @@ namespace GameStore.DataAccess.Repositories.Implementation
                 studio.Name = item.Name;
                 Save();
             };
+
+            return item.Id;
         }
 
         public void Save()

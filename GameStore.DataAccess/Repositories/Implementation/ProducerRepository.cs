@@ -1,31 +1,38 @@
 ﻿using GameStore.DataAccess.EntityModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameStore.DataAccess.Repositories.Implementation
 {
     public class ProducerRepository : IRepository<Producer>
     {
-        private ProducerRepository()
+        private ProducerRepository(DbContext gameContext)
         {
-            gameContext = GameStoreContext.GetInstance();
+            this.gameContext = gameContext as GameStoreContext;
+            if (this.gameContext == null)
+            {
+                throw new NullReferenceException("The context is null");
+            }
         }
 
         private readonly GameStoreContext gameContext;
-        private readonly static ProducerRepository Instance = new ProducerRepository();
+        private readonly static ProducerRepository Instance = new ProducerRepository(new GameStoreContext());
 
         public static ProducerRepository GetInstance()
         {
             return Instance;
         }
 
-        public void Add(Producer item)
+        public Guid Add(Producer item)
         {
+            var addingItemId = Guid.NewGuid();
+            item.Id = addingItemId;
             gameContext.Producers.Add(item);
+
             Save();
+            return addingItemId;
         }
 
         public ICollection<Producer> GetAll()
@@ -44,13 +51,16 @@ namespace GameStore.DataAccess.Repositories.Implementation
             return gameContext.Producers.FirstOrDefault(x => x.Id == id);
         }
 
-        public void Remove(Producer item)
+        public Guid Remove(Producer item)
         {
+            var removingItemId = item.Id;
             gameContext.Producers.Remove(item);
+
             Save();
+            return removingItemId;
         }
 
-        public void Update(Producer item)
+        public Guid Update(Producer item)
         {
             var producer = GetItemById(item.Id);
             if (producer != null)
@@ -58,6 +68,8 @@ namespace GameStore.DataAccess.Repositories.Implementation
                 producer.Name = item.Name;
                 Save();
             };
+
+            return item.Id;
         }
 
         public void Save()

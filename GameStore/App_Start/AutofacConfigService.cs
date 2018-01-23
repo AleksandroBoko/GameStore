@@ -10,6 +10,7 @@ using GameStore.Services.Services.Implementation;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Reflection;
+using System.Data.Entity;
 
 namespace GameStore.App_Start
 {
@@ -48,6 +49,10 @@ namespace GameStore.App_Start
             builder.Register(x => GameRepository.GetInstance())
                 .As<IRepository<Game>>()
                 .SingleInstance();
+
+            builder.RegisterType<GameStoreContext>()
+                .As<DbContext>()
+                .InstancePerRequest();
 
             builder.RegisterType<GenreServices>()
                 .As<IService<GenreModel>>()
