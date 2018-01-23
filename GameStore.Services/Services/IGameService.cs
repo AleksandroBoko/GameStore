@@ -7,7 +7,6 @@ namespace GameStore.Services.Services
     {
         ICollection<GameInfoTransferModel> GetGameInfoTransferAll();
         ICollection<GameRateTransferModel> GetTopRatedGames(int rate);
-        GameModel GetModelFromTransfer(GameCreationTransferModel transferModel);
-        void Add(GameModel item, string path);
+        void Add(GameCreationTransferModel item, string path);
     }
 }
