@@ -8,22 +8,16 @@ namespace GameStore.DataAccess.Repositories.Implementation
 {
     public class StudioRepository : IRepository<Studio>
     {
-        private StudioRepository(DbContext gameContext)
+        public StudioRepository(DbContext context)
         {
-            this.gameContext = gameContext as GameStoreContext;
-            if (this.gameContext == null)
+            gameContext = context as GameStoreContext;
+            if (gameContext == null)
             {
                 throw new NullReferenceException("The context is null");
             }
         }
 
         private readonly GameStoreContext gameContext;
-        private readonly static StudioRepository Instance = new StudioRepository(new GameStoreContext());
-
-        public static StudioRepository GetInstance()
-        {
-            return Instance;
-        }
 
         public Guid Add(Studio item)
         {

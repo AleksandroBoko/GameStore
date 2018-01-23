@@ -34,21 +34,21 @@ namespace GameStore.App_Start
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
-            builder.Register(x => GenreRepository.GetInstance())
+            builder.RegisterType<GenreRepository>()
                 .As<IRepository<Genre>>()
-                .SingleInstance();
+                .InstancePerRequest();
 
-            builder.Register(x => StudioRepository.GetInstance())
+            builder.RegisterType<StudioRepository>()
                 .As<IRepository<Studio>>()
-                .SingleInstance();
+                .InstancePerRequest();
 
-            builder.Register(x => ProducerRepository.GetInstance())
+            builder.RegisterType<ProducerRepository>()
                 .As<IRepository<Producer>>()
-                .SingleInstance();
+                .InstancePerRequest();
 
-            builder.Register(x => GameRepository.GetInstance())
+            builder.RegisterType<GameRepository>()
                 .As<IRepository<Game>>()
-                .SingleInstance();
+                .InstancePerRequest();
 
             builder.RegisterType<GameStoreContext>()
                 .As<DbContext>()
@@ -56,42 +56,34 @@ namespace GameStore.App_Start
 
             builder.RegisterType<GenreServices>()
                 .As<IService<GenreModel>>()
-                .WithParameter("repository", GenreRepository.GetInstance())
                 .InstancePerRequest();
 
             builder.RegisterType<StudioServices>()
                 .As<IService<StudioModel>>()
-                .WithParameter("repository", StudioRepository.GetInstance())
                 .InstancePerRequest();
 
             builder.RegisterType<ProducerServices>()
                 .As<IService<ProducerModel>>()
-                .WithParameter("repository", ProducerRepository.GetInstance())
                 .InstancePerRequest();
 
             builder.RegisterType<GameServices>()
                 .As<IService<GameModel>>()
-                .WithParameter("repository", GameRepository.GetInstance())
                 .InstancePerRequest();
 
             builder.RegisterType<GameServices>()
                 .As<IGameService>()
-                .WithParameter("repository", GameRepository.GetInstance())
                 .InstancePerRequest();
 
             builder.RegisterType<StudioServices>()
                 .As<IStudioService>()
-                .WithParameter("repository", StudioRepository.GetInstance())
                 .InstancePerRequest();
 
             builder.RegisterType<GenreServices>()
                 .As<IGenreService>()
-                .WithParameter("repository", GenreRepository.GetInstance())
                 .InstancePerRequest();
 
             builder.RegisterType<ProducerServices>()
                 .As<IProducerService>()
-                .WithParameter("repository", ProducerRepository.GetInstance())
                 .InstancePerRequest();
 
             Container = builder.Build();

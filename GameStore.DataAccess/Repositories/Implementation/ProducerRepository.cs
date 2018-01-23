@@ -8,23 +8,17 @@ namespace GameStore.DataAccess.Repositories.Implementation
 {
     public class ProducerRepository : IRepository<Producer>
     {
-        private ProducerRepository(DbContext gameContext)
+        public ProducerRepository(DbContext context)
         {
-            this.gameContext = gameContext as GameStoreContext;
-            if (this.gameContext == null)
+            gameContext = context as GameStoreContext;
+            if (gameContext == null)
             {
                 throw new NullReferenceException("The context is null");
             }
         }
 
         private readonly GameStoreContext gameContext;
-        private readonly static ProducerRepository Instance = new ProducerRepository(new GameStoreContext());
-
-        public static ProducerRepository GetInstance()
-        {
-            return Instance;
-        }
-
+        
         public Guid Add(Producer item)
         {
             var addingItemId = Guid.NewGuid();

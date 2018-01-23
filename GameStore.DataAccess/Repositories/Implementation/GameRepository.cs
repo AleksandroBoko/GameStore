@@ -8,22 +8,16 @@ namespace GameStore.DataAccess.Repositories.Implementation
 {
     public class GameRepository : IRepository<Game>
     {
-        private GameRepository(DbContext gameContext)
+        public GameRepository(DbContext context)
         {
-            this.gameContext = gameContext as GameStoreContext;
-            if (this.gameContext == null)
+            gameContext = context as GameStoreContext;
+            if (gameContext == null)
             {
                 throw new NullReferenceException("The context is null");
             }
         }
 
         private readonly GameStoreContext gameContext;
-        private readonly static GameRepository Instance = new GameRepository(new GameStoreContext());
-
-        public static GameRepository GetInstance()
-        {
-            return Instance;
-        }
 
         public Guid Add(Game item)
         {

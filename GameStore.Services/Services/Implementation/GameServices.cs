@@ -10,12 +10,14 @@ namespace GameStore.Services.Services.Implementation
 {
     public class GameServices : IGameService
     {
-        public GameServices(IRepository<Game> repository)
+        public GameServices(IRepository<Game> repository, IRepository<Producer> producerRep)
         {
             gameRepository = repository;
+            producerRepository = producerRep;
         }
 
         private readonly IRepository<Game> gameRepository;
+        private readonly IRepository<Producer> producerRepository;
 
         public ICollection<GameModel> GetAll()
         {
@@ -47,13 +49,15 @@ namespace GameStore.Services.Services.Implementation
 
         public void Add(GameModel item)
         {
-            if(item == null)
+            if (item == null)
             {
                 throw new ArgumentNullException();
             }
 
+
             item.Id = Guid.NewGuid();
             var gameEntity = GameStoreMapper.Map<GameModel, Game>(item);
+            gameEntity.Producers = item.Producers.Select(x => producerRepository.GetItemById(x.Id)).ToList();
             gameRepository.Add(gameEntity);
         }
 
@@ -67,6 +71,8 @@ namespace GameStore.Services.Services.Implementation
             item.Id = Guid.NewGuid();
             item.Image = path;
             var gameEntity = GameStoreMapper.Map<GameCreationTransferModel, Game>(item);
+
+            gameEntity.Producers = item.Producers.Select(x => producerRepository.GetItemById(x)).ToList();
             gameRepository.Add(gameEntity);
         }
 
