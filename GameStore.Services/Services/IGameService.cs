@@ -1,4 +1,5 @@
 ﻿using GameStore.Domains.Domain;
+using System;
 using System.Collections.Generic;
 
 namespace GameStore.Services.Services
@@ -7,6 +8,6 @@ namespace GameStore.Services.Services
     {
         ICollection<GameInfoTransferModel> GetGameInfoTransferAll();
         ICollection<GameRateTransferModel> GetTopRatedGames(int rate);
-        void Add(GameCreationTransferModel item, string path);
+        Guid Add(GameCreationTransferModel item, string path);
     }
 }

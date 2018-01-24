@@ -47,7 +47,7 @@ namespace GameStore.Services.Services.Implementation
             }
         }
 
-        public void Add(GameModel item)
+        public Guid Add(GameModel item)
         {
             if (item == null)
             {
@@ -58,10 +58,10 @@ namespace GameStore.Services.Services.Implementation
             item.Id = Guid.NewGuid();
             var gameEntity = GameStoreMapper.Map<GameModel, Game>(item);
             gameEntity.Producers = item.Producers.Select(x => producerRepository.GetItemById(x.Id)).ToList();
-            gameRepository.Add(gameEntity);
+            return gameRepository.Add(gameEntity);
         }
 
-        public void Add(GameCreationTransferModel item, string path)
+        public Guid Add(GameCreationTransferModel item, string path)
         {
             if (item == null)
             {
@@ -73,19 +73,19 @@ namespace GameStore.Services.Services.Implementation
             var gameEntity = GameStoreMapper.Map<GameCreationTransferModel, Game>(item);
 
             gameEntity.Producers = item.Producers.Select(x => producerRepository.GetItemById(x)).ToList();
-            gameRepository.Add(gameEntity);
+            return gameRepository.Add(gameEntity);
         }
 
-        public void Update(GameModel item)
+        public Guid Update(GameModel item)
         {
             var game = GameStoreMapper.Map<GameModel, Game>(item);
-            gameRepository.Update(game);
+            return gameRepository.Update(game);
         }
 
-        public void Remove(GameModel item)
+        public Guid Remove(GameModel item)
         {
             var game = GameStoreMapper.Map<GameModel, Game>(item);
-            gameRepository.Remove(game);
+            return gameRepository.Remove(game);
         }
 
         public ICollection<GameRateTransferModel> GetTopRatedGames(int rate)

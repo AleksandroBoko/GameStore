@@ -19,7 +19,7 @@ namespace GameStore.Services.Services.Implementation
         private readonly IRepository<Studio> studioRepository;
         private readonly IGameService gameService;
 
-        public void Add(StudioModel item)
+        public Guid Add(StudioModel item)
         {
             if (item == null)
             {
@@ -28,7 +28,7 @@ namespace GameStore.Services.Services.Implementation
 
             item.Id = Guid.NewGuid();
             var studioEntity = GameStoreMapper.Map<StudioModel, Studio>(item);
-            studioRepository.Add(studioEntity);
+            return studioRepository.Add(studioEntity);
         }
 
         public ICollection<StudioModel> GetAll()
@@ -56,16 +56,16 @@ namespace GameStore.Services.Services.Implementation
             }
         }
 
-        public void Remove(StudioModel item)
+        public Guid Remove(StudioModel item)
         {
             var studio = GameStoreMapper.Map<StudioModel, Studio>(item);
-            studioRepository.Remove(studio);
+            return studioRepository.Remove(studio);
         }
 
-        public void Update(StudioModel item)
+        public Guid Update(StudioModel item)
         {
             var studio = GameStoreMapper.Map<StudioModel, Studio>(item);
-            studioRepository.Update(studio);
+            return studioRepository.Update(studio);
         }
 
         public ICollection<StudioRateInfo> GetAllStudiosRatings()

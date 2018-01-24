@@ -1,13 +1,9 @@
-﻿using AutoMapper;
-using GameStore.DataAccess.EntityModels;
+﻿using GameStore.DataAccess.EntityModels;
 using GameStore.DataAccess.Repositories;
 using GameStore.Domains.Domain;
 using static GameStore.Services.Util.AppMapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameStore.Services.Services.Implementation
 {
@@ -20,10 +16,10 @@ namespace GameStore.Services.Services.Implementation
 
         private readonly IRepository<Producer> producerRepository;
 
-        public void Add(ProducerModel item)
+        public Guid Add(ProducerModel item)
         {
             var producerEntity = GameStoreMapper.Map<ProducerModel, Producer>(item);
-            producerRepository.Add(producerEntity);
+            return producerRepository.Add(producerEntity);
         }
 
         public ICollection<ProducerModel> GetAll()
@@ -51,16 +47,16 @@ namespace GameStore.Services.Services.Implementation
             }
         }
 
-        public void Remove(ProducerModel item)
+        public Guid Remove(ProducerModel item)
         {
             var producer = GameStoreMapper.Map<ProducerModel, Producer>(item);
-            producerRepository.Remove(producer);
+            return producerRepository.Remove(producer);
         }
 
-        public void Update(ProducerModel item)
+        public Guid Update(ProducerModel item)
         {
             var producer = GameStoreMapper.Map<ProducerModel, Producer>(item);
-            producerRepository.Update(producer);
+            return producerRepository.Update(producer);
         }
     }
 }
