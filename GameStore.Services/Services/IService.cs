@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameStore.Services.Services
 {
@@ -10,8 +7,8 @@ namespace GameStore.Services.Services
     {
         ICollection<T> GetAll();
         T GetItemById(Guid id);
-        void Add(T item);
-        void Update(T item);
-        void Remove(T item);
+        Guid Add(T item);
+        Guid Update(T item);
+        Guid Remove(T item);
     }
 }

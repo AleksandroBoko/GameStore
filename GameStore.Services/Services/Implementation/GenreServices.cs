@@ -1,13 +1,9 @@
-﻿using AutoMapper;
-using GameStore.DataAccess.EntityModels;
+﻿using GameStore.DataAccess.EntityModels;
 using GameStore.DataAccess.Repositories;
 using GameStore.Domains.Domain;
 using static GameStore.Services.Util.AppMapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameStore.Services.Services.Implementation
 {
@@ -20,10 +16,10 @@ namespace GameStore.Services.Services.Implementation
 
         private readonly IRepository<Genre> genreRepository;
 
-        public void Add(GenreModel item)
+        public Guid Add(GenreModel item)
         {
             var genreEntity = GameStoreMapper.Map<GenreModel, Genre>(item);
-            genreRepository.Add(genreEntity);
+            return genreRepository.Add(genreEntity);
         }
 
         public ICollection<GenreModel> GetAll()
@@ -46,16 +42,16 @@ namespace GameStore.Services.Services.Implementation
             return genre != null ? GameStoreMapper.Map<Genre, GenreInfoTransferModel>(genre) : new GenreInfoTransferModel();
         }
 
-        public void Remove(GenreModel item)
+        public Guid Remove(GenreModel item)
         {
             var genre = GameStoreMapper.Map<GenreModel, Genre>(item);
-            genreRepository.Remove(genre);
+            return genreRepository.Remove(genre);
         }
 
-        public void Update(GenreModel item)
+        public Guid Update(GenreModel item)
         {
             var genre = GameStoreMapper.Map<GenreModel, Genre>(item);
-            genreRepository.Update(genre);
+            return genreRepository.Update(genre);
         }
     }
 }
