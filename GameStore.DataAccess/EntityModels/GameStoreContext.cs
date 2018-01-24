@@ -13,13 +13,6 @@ namespace GameStore.DataAccess.EntityModels
         public GameStoreContext() : base("GameStoreContext")
         { }
 
-        private static readonly GameStoreContext Instance = new GameStoreContext();
-        
-        public static GameStoreContext GetInstance()
-        {
-            return Instance;
-        } 
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         { 
 

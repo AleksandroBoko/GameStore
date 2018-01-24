@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using GameStore.DataAccess.EntityModels;
-using GameStore.DataAccess.Repositories;
-using GameStore.DataAccess.Repositories.Implementation;
 using GameStore.Domains.Domain;
-using GameStore.Services.Services;
-using GameStore.Services.Services.Implementation;
 using System.Linq;
 
 namespace GameStore.Services.Util
@@ -14,14 +10,9 @@ namespace GameStore.Services.Util
         static AppMapper()
         {
             InitializeMapper();
-
-            producerService = new ProducerServices(ProducerRepository.GetInstance());
-            producerRepository = ProducerRepository.GetInstance();
         }
 
         public static IMapper GameStoreMapper;
-        private static readonly IProducerService producerService;
-        private static IRepository<Producer> producerRepository;
 
         private static void InitializeMapper()
         {
@@ -31,8 +22,7 @@ namespace GameStore.Services.Util
                 cfg.CreateMap<ProducerModel, Producer>();
                 cfg.CreateMap<Game, GameModel>();
                 cfg.CreateMap<GameModel, Game>()
-                    .ForMember(x => x.Producers,
-                               s => s.MapFrom(g => g.Producers.Select(p => producerRepository.GetItemById(p.Id))));
+                    .ForMember(x => x.Producers, p => p.Ignore());
 
                 cfg.CreateMap<Studio, StudioModel>();
                 cfg.CreateMap<StudioModel, Studio>();
@@ -47,8 +37,7 @@ namespace GameStore.Services.Util
                 cfg.CreateMap<Game, GameRateTransferModel>();
 
                 cfg.CreateMap<GameCreationTransferModel, Game>()
-                    .ForMember(x => x.Producers,
-                               s => s.MapFrom(g => g.Producers.Select(p => producerRepository.GetItemById(p))));
+                    .ForMember(x => x.Producers, p => p.Ignore());
 
                 cfg.CreateMap<Studio, StudioInfoTransferModel>()
                     .ForMember(x => x.Games,

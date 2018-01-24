@@ -1,32 +1,32 @@
 ﻿using GameStore.DataAccess.EntityModels;
-using GameStore.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameStore.DataAccess.Repositories.Implementation
 {
     public class GenreRepository : IRepository<Genre>
     {
-        private GenreRepository()
+        public GenreRepository(DbContext context)
         {
-            gameContext = new GameStoreContext();
+            gameContext = context as GameStoreContext;
+            if (gameContext == null)
+            {
+                throw new NullReferenceException("The context is null");
+            }
         }
 
         private readonly GameStoreContext gameContext;
-        private readonly static GenreRepository Instance = new GenreRepository();
 
-        public static GenreRepository GetInstance()
+        public Guid Add(Genre item)
         {
-            return Instance;
-        }
-
-        public void Add(Genre item)
-        {
+            var addingItemId = Guid.NewGuid();
+            item.Id = addingItemId;
             gameContext.Genres.Add(item);
+
             Save();
+            return addingItemId;
         }
 
         public ICollection<Genre> GetAll()
@@ -45,13 +45,16 @@ namespace GameStore.DataAccess.Repositories.Implementation
             return gameContext.Genres.FirstOrDefault(x => x.Id == id);
         }
 
-        public void Remove(Genre item)
+        public Guid Remove(Genre item)
         {
+            var removingItemId = item.Id;
             gameContext.Genres.Remove(item);
+
             Save();
+            return removingItemId;
         }
 
-        public void Update(Genre item)
+        public Guid Update(Genre item)
         {
             var genre = GetItemById(item.Id);
             if (genre != null)
@@ -59,6 +62,8 @@ namespace GameStore.DataAccess.Repositories.Implementation
                 genre.Name = item.Name;
                 Save();
             }
+
+            return item.Id;
         }
 
         public void Save()

@@ -1,23 +1,19 @@
-﻿using AutoMapper;
-using GameStore.DataAccess.EntityModels;
+﻿using GameStore.DataAccess.EntityModels;
 using GameStore.DataAccess.Repositories;
 using GameStore.Domains.Domain;
 using static GameStore.Services.Util.AppMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GameStore.DataAccess.Repositories.Implementation;
 
 namespace GameStore.Services.Services.Implementation
 {
     public class StudioServices : IStudioService
     {
-        public StudioServices(IRepository<Studio> repository)
+        public StudioServices(IRepository<Studio> repository, IGameService gameServ)
         {
             studioRepository = repository;
-            gameService = new GameServices(GameRepository.GetInstance());
+            gameService = gameServ;
         }
 
         private readonly IRepository<Studio> studioRepository;
@@ -25,7 +21,7 @@ namespace GameStore.Services.Services.Implementation
 
         public void Add(StudioModel item)
         {
-            if(item == null)
+            if (item == null)
             {
                 throw new ArgumentNullException();
             }
