@@ -54,8 +54,6 @@ namespace GameStore.Services.Services.Implementation
                 throw new ArgumentNullException();
             }
 
-
-            item.Id = Guid.NewGuid();
             var gameEntity = GameStoreMapper.Map<GameModel, Game>(item);
             gameEntity.Producers = item.Producers.Select(x => producerRepository.GetItemById(x.Id)).ToList();
             return gameRepository.Add(gameEntity);
@@ -68,7 +66,6 @@ namespace GameStore.Services.Services.Implementation
                 throw new ArgumentNullException();
             }
 
-            item.Id = Guid.NewGuid();
             item.Image = path;
             var gameEntity = GameStoreMapper.Map<GameCreationTransferModel, Game>(item);
 
