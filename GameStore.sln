@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Services", "GameS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Domains", "GameStore.Domains\GameStore.Domains.csproj", "{7F357CB2-4014-48E6-9DAF-01E903540395}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.UnitTestServices", "GameStore.UnitTestServices\GameStore.UnitTestServices.csproj", "{F8C3FEE6-55C5-449D-A5D1-A3EB282E8519}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Services.UnitTests", "GameStore.UnitTestServices\GameStore.Services.UnitTests.csproj", "{F8C3FEE6-55C5-449D-A5D1-A3EB282E8519}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
